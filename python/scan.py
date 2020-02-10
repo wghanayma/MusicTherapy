@@ -46,6 +46,7 @@ for r, d, f in os.walk('/mnt/0669151d-bc33-44e6-a48d-a720c18ee6a0/Music/'):
 
 removed=Diff(prev_music,current)
 added=Diff(current,current)
-if len(removed)>0:
-
-if len(added)>0:
+if len(removed) > 0:
+    print("hello world")
+if len(added) > 0:
+    print("hello world")
