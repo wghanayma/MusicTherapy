@@ -1,3 +1,2 @@
-mysql-connector-python==8.0.19
+mysql-connector-python-rf==8.0.19
 tinytag==1.2.2
-

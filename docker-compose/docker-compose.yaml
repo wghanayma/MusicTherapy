@@ -4,18 +4,19 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - ~/docker-volumes/mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql
     restart: always
     ports:
-      - 3306:3306
+      - 3305:3306
     env_file: ./mysqldb.env
     container_name: mysqldb
   web-server:
     image: php:latest-apache
     volumes:
-      - ~/web-projects/music-player/:/var/www/html
+      - webserver:/var/www/html
     restart: always
-    ports: 
-      - 80:80
+    depends_on: db
+    ports:
+      - 8090:80
     env_file: ./web-server.env
     container_name: webserver
