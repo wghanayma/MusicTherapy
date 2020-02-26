@@ -1,0 +1,52 @@
+Every Track has the Following metadata:
+
+1- Title
+2- Artist (The Track Artist)
+3- Album Artist
+4- Album
+5- Year
+6- Track #
+7- How Many Song in the Album
+8- CD #
+9- Genre
+10- Front Cover
+
+how the database will be constructed:
+
+1- i will have a script will read all the Artist in all the files
+and store them in the database in a table called ArtistTable, the
+ArtistTable will have only the Artist Name and its ID.
+Note:
+# the Artist can identify a group of people which called a band'.
+
+2- there will be a table for the Albums it will have an ID (PK)
+, it's Name, How Many CD it Have, the Total Number of Tracks it have
+, the Genre and a Path to The Front Cover and the Year that it has been
+released in.
+
+3- Each user has a username (PK) that cannot be the same for any two users
+and each user have a firstname, mid (optional), lastname, Random Salt
+(for more Security), The Hashed Password, the Birth Date and an Email.
+
+4- each user can have an unlimited number of playlists but they cannot have
+the same name for tha same user, ID (P key), userid (F Key to the UserTable)
+, the name of the playlists, the Date it hase been created, if it's public
+or Private if it's public it will show in the user page and if not it will
+not, the number of song in that playlist, the last time it has been updated
+, the description.
+
+5- the song in the playlists will be saved in the PlaylistSongTable
+which have id (P Key), PlaylistID (F key), songID (F Key to the SongTable)
+and the position of the song in the playlists
+
+6- The SongTable will have an ID (P Key), AlbumID (F Key), the Title
+, The Path, it's Track #, In which CD it exist,
+
+7- there is a table called AlbumArtist which make the relation between
+the Artist and The Album because it can be a multivalue relation.
+
+8- there is a table called SongArtist which make the relation between
+the Artist and the Track because some Tracks can have a multiple Artist.
+
+Details have been collected from:
+https://stackoverflow.com/questions/20921266/schema-for-music-lists-playlists-web-app

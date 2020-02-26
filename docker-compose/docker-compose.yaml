@@ -2,21 +2,24 @@ version: "3.3"
 
 services:
   db:
-    image: mysql:5.7
+    container_name: mysql
+    image: mysql:latest
     volumes:
-      - mysql:/var/lib/mysql
+      - ../mysqldb/:/var/lib/mysql
     restart: always
     ports:
-      - 3305:3306
+      - 3306:3306
     env_file: ./mysqldb.env
     container_name: mysqldb
   web-server:
-    image: php:latest-apache
+    container_name: webserver
+    image: httpd
     volumes:
-      - webserver:/var/www/html
+      - ../design/:/usr/local/apache2/htdocs/
     restart: always
-    depends_on: db
+    depends_on:
+      - db
     ports:
-      - 8090:80
+      - 80:80
     env_file: ./web-server.env
     container_name: webserver
