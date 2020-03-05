@@ -1,5 +1,11 @@
-html {
-  background-color: #2b2b2b;
-  margin: 0;
-  border: 0;
+#Logo {
+  color: #f1001f;
+}
+
+.bg-dark {
+  background-color: #282828 !important;
+}
+
+.font-nav-custom-color {
+  color: #f1001f;
 }

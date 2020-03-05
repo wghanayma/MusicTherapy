@@ -50,3 +50,6 @@ the Artist and the Track because some Tracks can have a multiple Artist.
 
 Details have been collected from:
 https://stackoverflow.com/questions/20921266/schema-for-music-lists-playlists-web-app
+https://stackoverflow.com/questions/1054022/best-way-to-store-password-in-database
+https://stackoverflow.com/questions/947618/how-to-best-store-user-information-and-user-login-and-password
+https://stackoverflow.com/questions/420843/how-does-password-salt-help-against-a-rainbow-table-attack
