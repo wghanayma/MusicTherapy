@@ -1,2 +1,2 @@
-# onemusic
+# Music Therapy
 Web Course Project
