@@ -1,3 +1,8 @@
+body {
+  background-color: #404040;
+  background-size: cover;
+}
+
 #Logo {
   color: #f1001f;
 }
