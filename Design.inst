@@ -29,7 +29,7 @@ and each user have a firstname, mid (optional), lastname, Random Salt
 (for more Security), The Hashed Password, the Birth Date and an Email.
 
 4- each user can have an unlimited number of playlists but they cannot have
-the same name for tha same user, ID (P key), userid (F Key to the UserTable)
+the same name for the same user, ID (P key), userid (F Key to the UserTable)
 , the name of the playlists, the Date it hase been created, if it's public
 or Private if it's public it will show in the user page and if not it will
 not, the number of song in that playlist, the last time it has been updated
