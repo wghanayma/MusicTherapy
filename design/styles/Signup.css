@@ -1,0 +1,23 @@
+body {
+  margin-top: 60px;
+  background-color: #404040;
+  background-size: cover;
+}
+
+.bg-dark {
+  background-color: #282828 !important;
+}
+
+.justify-center {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.justify-right {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+.grid-container {
+  display: grid;
+}
