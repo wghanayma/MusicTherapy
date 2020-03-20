@@ -11,18 +11,24 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <!-- BootStrap CDN for JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
+    <link rel="stylesheet" href="//unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="//unpkg.com/bootstrap-select@1.12.4/dist/css/bootstrap-select.min.css" type="text/css" />
+    <link rel="stylesheet" href="//unpkg.com/bootstrap-select-country@4.0.0/dist/css/bootstrap-select-country.min.css" type="text/css" />
+
+    <script src="//unpkg.com/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js"></script>
+    <script src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Information Overview</title>
+    <title>Edit Account Information Overview</title>
     <link rel="stylesheet" href="./styles/edit_account_information_overview.css" />
 </head>
 
 <body>
     <nav class=" navbar shadow navbar-expand-md navbar-dark bg-dark fixed-top margin-160-left">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>s
-      </button>
+      <span class="navbar-toggler-icon"></span>s
+    </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto justify-right">
                 <li class="nav-item active">
@@ -34,14 +40,14 @@
     </nav>
 
     <!-- The sidebar -->
-      <div class="sidebar shadow">
+    <div class="sidebar shadow">
         <a class="navbar-brand" href="./index.html" id="Logo">Music Therapy</a>
         <a href="./index.html"><i class="fas fa-home"></i> Home</a>
         <a href="./search.html"><i class="fas fa-search"></i> Search</a>
         <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
         <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
     </div>
-   
+
     <nav class=" navbar shadow navbar-expand-md navbar-dark bg-dark fixed-bottom" style="height: 80px;"></nav>
     <div class="container-fluid">
         <div class="row">
@@ -52,61 +58,90 @@
                 <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
                 <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
             </div>
-          <main role="main" class="col-md-8 ml-sm-auto col-lg-10 px-8 ">      
-                  <div class="jumbotron">
-  <h1>Account Overview </h1>
-  <h2>Profile </h2>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group ">
-          <h3 class="control-label " for="username">
-           Username 
-          </h3>
-          <h3 class="control-label " for="gender">
-            Gender
-           </h3>
-           <h3 class="control-label " for="data_of_birth">
-            Data of birth 
-           </h3>
-           <h3 class="control-label " for="country">
-            Country 
-           </h3>
-           
-          
-         </div>
-                 <button type="button" class="btn  btn-outline-dark">Success</button>
+            <main role="main" class="col-md-8 ml-sm-auto col-lg-10 px-8 ">
+                <div class="jumbotron">
+                    <h1>Edit Account </h1>
+                    <div class="container">
+                        <h2>Profile </h2>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd">Name:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Enter Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Mobile:</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" placeholder="Enter Mobile">
+                                </div>
+                            </div>
 
-    </div>
-    <div class="col-md-6">
-        <div class="form-group ">
-            <h3 class="control-label " for="input_username">
-                Username 
-               </h3>
-               <h3 class="control-label " for="input_gender">
-                 Gender
-                </h3>
-                <h3 class="control-label " for="input_data_of_birth">
-                 Data of birth 
-                </h3>
-                <h3 class="control-label " for="input_country">
-                 Country 
-                </h3>
-                
-                 
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd">Gender:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd">Date of Bite:</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd">Country:</label>
+                                <div class="col-sm-4">
+                                    <select class="selectpicker countrypicker" data-flag="true"></select>
 
+                                    <script>
+                                        $('.countrypicker').countrypicker();
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Save Profile</button>
+                                    <button type="cancel" class="btn btn-default">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                        <h2>Change Your Password </h2>
+                        <form class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Current Password:</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" placeholder="Enter Current Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">New Password:</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" placeholder="Enter New Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Repeat Password:</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" placeholder="Enter Repeat Password">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success">Set New Password</button>
+                            <button type="cancel" class="btn btn-default">Cancel</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </main>
         </div>
-
-  </div>
-    
-</div>  
-   </div>
-  
-          
-          </main>
-      </div>
     </div>
- 
 </body>
 
-  
 </html>

@@ -1,0 +1,270 @@
+        body {
+    background-color: #282828;
+    background-size: cover;
+}
+
+#Logo {
+    color: #f1001f;
+}
+
+.justify-center {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.justify-right {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+.margin-160-left {
+    margin-left: 160px;
+}
+
+.bg-dark {
+    background-color: #000000 !important;
+}
+
+.font-nav-custom-color {
+    color: #f1001f;
+}
+
+
+/* Style the sidebar - fixed full height */
+
+.sidebar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #282828;
+    overflow-x: hidden;
+    padding-top: 16px;
+}
+
+
+/* Style sidebar links */
+
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #f1001f;
+    display: block;
+}
+
+
+/* Style links on mouse-over */
+
+.sidebar a:hover {
+    color: #282828;
+}
+
+
+/* Style the main content */
+
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    padding: 0px 10px;
+}
+
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        padding: 48px 0 0;
+        box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    }
+    .sidebar a {
+        font-size: 18px;
+    }
+}
+
+.jumbotron {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+body {
+    background-color: #000000;
+    background-size: cover;
+    color: #ffffff;
+}
+
+#Logo {
+    color: #ffffff;
+}
+
+.justify-center {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.justify-right {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+.margin-160-left {
+    margin-left: 160px;
+}
+
+.bg-dark {
+    background-color: #282828 !important;
+}
+
+.font-nav-custom-color {
+    color: #f1001f;
+}
+
+
+/* Style the sidebar - fixed full height */
+
+.sidebar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #282828;
+    overflow-x: hidden;
+    padding-top: 16px;
+}
+
+
+/* Style sidebar links */
+
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #f1001f;
+    display: block;
+}
+
+
+/* Style links on mouse-over */
+
+.sidebar a:hover {
+    color: #282828;
+}
+
+
+/* Style the main content */
+
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    padding: 0px 10px;
+}
+
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        padding: 48px 0 0;
+        box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    }
+    .sidebar a {
+        font-size: 18px;
+    }
+}
+
+.icon-cog {
+    color: white;
+}
+
+.service-wrap {
+    width: 100%;
+    max-width: 500px;
+    margin: 25px auto;
+    padding: 25px;
+    border: 1px solid #000;
+}
+
+.multiple-file-upload-wrap {
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid #dadada;
+    padding: 15px;
+    .mfu-clear {
+        clear: both;
+    }
+    .mfu-hide {
+        display: none;
+    }
+    .mfu-item {
+        background: #fafafa;
+        padding: 7px 7px 4px;
+    }
+    .mfu-file-number {
+        display: inline-block;
+        padding: 0 10px;
+        font-size: 1.1em;
+    }
+    .mfu-file-input {
+        display: inline-block;
+    }
+    .mfu-new-item-btn {
+        margin-top: 15px;
+        float: right;
+    }
+    .already-uploaded-files {
+        padding: 10px;
+        background: #fafafa;
+        margin-bottom: 15px;
+        .aup-title {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .aup-item {
+            display: block;
+            padding: 5px;
+            &:not(:last-child) {
+                border-bottom: 1px solid #dadada;
+            }
+            &:hover {
+                background: #dadada;
+            }
+        }
+        .aup-file-name {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        .aup-delete-btn {
+            color: red;
+            display: inline-block;
+            float: right;
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+        .aup-server-response {
+            display: none;
+            color: red;
+            padding: 5px 15px;
+            background: #fff;
+        }
+        .upload {
+            background: #fafafa;
+            color: red;
+        }

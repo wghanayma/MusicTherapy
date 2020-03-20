@@ -81,55 +81,86 @@ body {
   background-color: #ffffff;
  
 }
+body {
+  background-color: #ffffff;
+  background-size: cover;
+}
 
+#Logo {
+  color: #f1001f;
+}
 
-.dropdown-toggle.btn-default {
-  color: #292b2c;
-  background-color: #fff;
-  border-color: #ccc;
+.justify-center {
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
-.bootstrap-select.show > .dropdown-menu > .dropdown-menu {
-  display: block;
+.justify-right {
+  margin-right: 0 !important;
+  margin-left: auto !important;
 }
-.bootstrap-select > .dropdown-menu > .dropdown-menu li.hidden {
-  display: none;
+.margin-160-left {
+  margin-left: 160px;
 }
-.bootstrap-select > .dropdown-menu > .dropdown-menu li a {
-  display: block;
-  width: 100%;
-  padding: 3px 1.5rem;
-  clear: both;
-  font-weight: 400;
-  color: #292b2c;
-  text-align: inherit;
-  white-space: nowrap;
-  background: 0 0;
-  border: 0;
+
+.bg-dark {
+  background-color: #282828 !important;
+}
+
+.font-nav-custom-color {
+  color: #f1001f;
+}
+
+/* Style the sidebar - fixed full height */
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #282828;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+/* Style sidebar links */
+.sidebar a {
+  padding: 6px 8px 6px 16px;
   text-decoration: none;
-}
-.bootstrap-select > .dropdown-menu > .dropdown-menu li a:hover {
-  background-color: #f4f4f4;
-}
-.bootstrap-select > .dropdown-toggle {
-  width: 100%;
-}
-.dropdown-menu > li.active > a {
-  color: #fff !important;
-  background-color: #337ab7 !important;
-}
-.bootstrap-select .check-mark {
-  line-height: 14px;
-}
-.bootstrap-select .check-mark::after {
-  font-family: "FontAwesome";
-  content: "\f00c";
-}
-.bootstrap-select button {
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 20px;
+  color: #f1001f;
+  display: block;
 }
 
-/* Make filled out selects be the same size as empty selects */
-.bootstrap-select.btn-group .dropdown-toggle .filter-option {
-  display: inline !important;
+/* Style links on mouse-over */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Style the main content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+      position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
+}
+ 
+.jumbotron{
+  background-color: #ffffff;
+ 
 }
