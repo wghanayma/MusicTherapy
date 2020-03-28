@@ -15,33 +15,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Account Information Overview</title>
+    <link rel="shortcut icon" href="./images/Logo.png">
+    <link rel="stylesheet" href="./icons/css/all.css">
     <link rel="stylesheet" href="./styles/information_overview.css" />
 </head>
 
 <body>
-    <nav class=" navbar shadow navbar-expand-md navbar-dark bg-dark fixed-top margin-160-left">
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
+        <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div style="margin-left:3.5px;display: inline-flex;">
+            <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
+            <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
+        </div>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>s
-    </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <img class="img-fluid img" src="./images/p.svg" alt="Account Image"  style="width: 37px;height:30px">
+      </button>
+
+        <div class="collapse  navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto justify-right">
                 <li class="nav-item active">
-                    <a class="nav-link font-nav-custom-color" href="./Login.html">Login</a>
+                    <label class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">username </label>
                     <span class="sr-only">(current)</span>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link font-nav-custom-color" style="text-align: right;margin-right: 7px; " href="./Login.html">Logout</a>
+                    <span class="sr-only">(current)</span>
+                </li>
+
             </ul>
         </div>
     </nav>
-
     <!-- The sidebar -->
-    <div class="sidebar shadow">
-        <a class="navbar-brand" href="./index.html" id="Logo">Music Therapy</a>
+    <div class="sidebar bg-dark" id="sidebar" style="padding-top: 35px;">
         <a href="./index.html"><i class="fas fa-home"></i> Home</a>
         <a href="./search.html"><i class="fas fa-search"></i> Search</a>
-        <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
         <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
+        <a class="division">-------------------------</a>
+        <a><i class="fas fa-file-plus"></i>Create Playlist</a>
     </div>
-
     <nav class=" navbar shadow navbar-expand-md navbar-dark bg-dark fixed-bottom" style="height: 80px;"></nav>
     <div class="container-fluid">
         <div class="row">
