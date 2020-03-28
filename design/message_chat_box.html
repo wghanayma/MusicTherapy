@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="./icons/css/all.css">
+  <!-- BootStrap CDN for CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- BootStrap CDN for JQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <!-- BootStrap CDN for popper -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <!-- BootStrap CDN for JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="script/search_result.js">
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+  <script src="jquery.HorizontalBlocks.js" type="text/javascript"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/7.13.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="/__/firebase/7.13.1/firebase-analytics.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message Chat </title>
+  <link rel="shortcut icon" href="./images/Logo.png">
+  <link rel="stylesheet" href="./icons/css/all.css">
+  <link rel="stylesheet" href="./styles/message_chat_box.css" />
+
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet" </head>
+
+  <body>
+
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
+      <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      <div style="margin-left:3.5px;display: inline-flex;">
+        <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
+        <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music
+                Therapy</a>
+      </div>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <img class="img-fluid img" src="./images/p.svg" alt="Account Image" style="width: 37px;height:30px">
+        </button>
+
+      <div class="collapse  navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto justify-right">
+          <li class="nav-item active">
+            <label class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">username </label>
+            <span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link font-nav-custom-color" style="text-align: right;margin-right: 7px; " href="./Login.html">Logout</a>
+            <span class="sr-only">(current)</span>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+    <!-- The sidebar -->
+    <div class="sidebar shadow">
+      <a class="navbar-brand" href="./index.html" id="Logo">Music Therapy</a>
+      <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="./search.html"><i class="fas fa-search"></i> Search</a>
+      <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
+      <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
+    </div>
+
+    <nav class=" navbar shadow navbar-expand-md navbar-dark bg-dark fixed-bottom" style="height: 80px;"></nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="sidebar shadow ">
+          <a class="navbar-brand" href="./index.html" id="Logo">Music Therapy</a>
+          <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="./search.html"><i class="fas fa-search"></i> Search</a>
+          <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
+          <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
+        </div>
+
+      </div>
+      <div class="jumbotron   ">
+        <div class="text-center">
+          <div class="container">
+            <h3 class=" text-center">Messaging</h3>
+            <div class="messaging">
+              <div class="inbox_msg">
+                <div class="inbox_people">
+                  <div class="headind_srch">
+                    <div class="recent_heading">
+                      <h4>Recent</h4>
+                    </div>
+                    <div class="srch_bar">
+                      <div class="stylish-input-group">
+                        <input type="text" class="search-bar" placeholder="Search">
+                        <span class="input-group-addon">
+                                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                </span> </div>
+                    </div>
+                  </div>
+                  <div class="inbox_chat">
+                    <div class="chat_list active_chat">
+                      <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                          <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat_list">
+                      <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                          <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat_list">
+                      <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                          <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat_list">
+                      <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                          <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat_list">
+                      <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                          <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat_list">
+                      <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                          <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chat_list">
+                      <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+                          <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                          <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mesgs">
+                  <div class="msg_history">
+                    <div class="incoming_msg">
+                      <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>Test which is a new approach to have all solutions
+                          </p>
+                          <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                      </div>
+                    </div>
+                    <div class="outgoing_msg">
+                      <div class="sent_msg">
+                        <p>Test which is a new approach to have all solutions
+                        </p>
+                        <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                    </div>
+                    <div class="incoming_msg">
+                      <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>Test, which is a new approach to have</p>
+                          <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
+                      </div>
+                    </div>
+                    <div class="outgoing_msg">
+                      <div class="sent_msg">
+                        <p>Apollo University, Delhi, India Test</p>
+                        <span class="time_date"> 11:01 AM    |    Today</span> </div>
+                    </div>
+                    <div class="incoming_msg">
+                      <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>We work directly with our designers and suppliers, and sell direct to you, which means quality, exclusive products, at a price anyone can afford.</p>
+                          <span class="time_date"> 11:01 AM    |    Today</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="type_msg">
+                    <div class="input_msg_write">
+                      <input type="text" class="write_msg" placeholder="Type a message" />
+                      <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <nav class=" navbar shadow navbar-expand-lg navbar-dark bg-dark fixed-bottom" style=" height: 80px; width:100%; margin-left:0px">
+        <div class="row" style="width:100%">
+          <div class="col-lg-2">
+            <h4 class="sna" style="color: white; text-align: center; margin-top:5px;">
+              Nada Sale Male
+            </h4>
+          </div>
+          <audio src="" autoplay loop class="player col-lg-8 " controls>
+    </audio>
+          <div class="col-lg-2">
+          </div>
+        </div>
+      </nav>
+  </body>
+
+</html>
