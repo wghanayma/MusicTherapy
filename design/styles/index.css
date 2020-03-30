@@ -1,7 +1,7 @@
 body {
   margin-top: 71px;
   margin-left: 170px;
-  background-color: #404040;
+  background-color: #222222;
   background-size: cover;
 }
 
@@ -25,7 +25,7 @@ body {
 }
 
 .bg-dark {
-  background-color: #282828 !important;
+  background-color: #1a1a1a !important;
 }
 
 .font-nav-custom-color {
@@ -94,5 +94,13 @@ body {
 }
 
 .sidebar a:hover {
+  color: #ffaa00;
+}
+
+.right-items ul li a {
+  text-decoration-color: #ffaa00;
+}
+
+.right-items ul li a:hover {
   color: #ffaa00;
 }
