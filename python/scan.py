@@ -10,11 +10,7 @@ def Diff(li1, li2):
     return (list(set(li1) - set(li2)))
 
 
-def write_the_Music_File():
-    prev = open('/mnt/0669151d-bc33-44e6-a48d-a720c18ee6a0/.prev/Music', 'a')
-    for f in current:
-        prev.write(f+"\n")
-    prev.close()
+
 
 
 # Variable Declaration Area
@@ -32,9 +28,15 @@ albumYear = ""
 albumGenre = ""
 mydb = mysql.connector.connect(
     host="localhost",
-    user="yourusername",
-    passwd="yourpassword"
+    user="Mohammed",
+    passwd="Mohammed"
 )
+
+def write_the_Music_File():
+    prev = open('/mnt/0669151d-bc33-44e6-a48d-a720c18ee6a0/.prev/Music', 'w')
+    for f in current:
+        prev.write(f+"\n")
+    prev.close()
 
 with open('/mnt/0669151d-bc33-44e6-a48d-a720c18ee6a0/.prev/Music') as f:
     prev_music = [line.rstrip('\n') for line in f]
@@ -50,8 +52,10 @@ for r, d, f in os.walk('/mnt/0669151d-bc33-44e6-a48d-a720c18ee6a0/Music/'):
             current.append(os.path.join(r, file))
 
 removed = Diff(prev_music, current)
-added = Diff(current, current)
+added = Diff(current, prev_music)
+
 if len(removed) > 0:
-    print("hello world")
+    print("hello Removed")
 if len(added) > 0:
-    print("hello world")
+    print("hello Added")
+write_the_Music_File();
