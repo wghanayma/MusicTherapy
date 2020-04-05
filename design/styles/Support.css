@@ -1,0 +1,55 @@
+body {
+  margin-top: 71px;
+  background-color: #222222;
+  background-size: cover;
+}
+
+#topbar {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+#Logo {
+  color: #ffaa00;
+}
+
+.justify-center {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.justify-right {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+.bg-dark {
+  background-color: #1a1a1a !important;
+}
+
+.right-items ul li a {
+  text-decoration-color: #ffaa00;
+}
+
+.right-items ul li a:hover {
+  color: #ffaa00;
+}
+
+.container {
+  color: white;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.container * {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.Send-btn {
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: larger;
+}
