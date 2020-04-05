@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="./icons/css/all.css">
+  <!-- BootStrap CDN for CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- BootStrap CDN for JQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <!-- BootStrap CDN for popper -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <!-- BootStrap CDN for JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search</title>
+  <link rel="shortcut icon" href="./images/Logo.png">
+  <link rel="stylesheet" href="./icons/css/all.css">
+  <link rel="stylesheet" href="./styles/search.css" />
+</head>
+
+<body>
+  <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
+    <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <div style="margin-left:3.5px;display: inline-flex;">
+      <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
+      <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music
+                Therapy</a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <img class="img-fluid img" src="./images/p.svg" alt="Account Image" style="width: 37px;height:30px">
+        </button>
+
+    <div class="collapse  navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto justify-right">
+        <li class="nav-item active">
+          <label class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">username </label>
+          <span class="sr-only">(current)</span>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link font-nav-custom-color" style="text-align: right;margin-right: 7px; " href="./Login.html">Logout</a>
+          <span class="sr-only">(current)</span>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <!-- The sidebar -->
+  <div class="sidebar shadow">
+    <a class="navbar-brand" href="./index.html" id="Logo">Music Therapy</a>
+    <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="./search.html"><i class="fas fa-search"></i> Search</a>
+    <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
+    <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
+  </div>
+
+  <nav class=" navbar shadow navbar-expand-md navbar-dark bg-dark fixed-bottom" style="height: 80px;"></nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="sidebar shadow">
+        <a class="navbar-brand" href="./index.html" id="Logo">Music Therapy</a>
+        <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="./search.html"><i class="fas fa-search"></i> Search</a>
+        <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
+        <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
+      </div>
+      <main role="main" class="col-md-8 ml-sm-auto col-lg-10 px-8 ">
+
+
+
+        <div class="jumbotron">
+          <row>
+            <hr style="margin:35px">
+
+            <h1 class="  text-light">What you are looking for ? </h1>
+            <hr style="margin:5px">
+
+            <div class="d-flex justify-content-center">
+              <div class="input-group search-style col-md-10">
+                <input id="Search" class="form-control  border-secondary py-2 " type="search" placeholder="Search" style="border-right: none !important;">
+                <div class="input-group-append">
+                  <button class="btn  " type="button" style="border-top: 1px solid white;border-right: 1px solid white;border-bottom: 1px solid white;">
+                                            <i class="icon-cog fa fa-search "></i>
+                                        </button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="text-center">
+              <h5 style="margin-top:18px;">What you are search about ?</h5>
+              <form>
+                <label class="radio-inline">
+                                        <input type="radio" name="song_name">Song Name</label>
+                <label class="radio-inline">
+                                        <input type="radio" name="genre">Genre</label>
+                <label class="radio-inline">
+                                        <input type="radio" name="albums" checked>Albums</label>
+                <label class="radio-inline">
+                                            <input type="radio" name="playlist">Playlist</label>
+
+                <label class="radio-inline">
+                                        <input type="radio" name="username">Username</label>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+
+</body>
+
+
+</html>
