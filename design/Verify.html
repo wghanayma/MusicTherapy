@@ -34,12 +34,12 @@
       <div class="container" style="padding-top: 50px;">
         <h3 style="text-align: center;">Please Enter Your Code Here:</h3>
 
-        <input class="form-control input-width justify-center" type="text" name="VerificationCode" placeholder="Verification Code" onkeydown="checkNumber(event);">
-        <button class="btn btn-success btn-block justify-center Verify-btn" type="button">Verify</button>
-        <h5 style="text-align: center;margin-top:50px;">if you did not receive an email check the spam folder or <a href="./request_new_Email.php">Press here to request a new one</a></h5>
+        <input required class="form-control input-width justify-center" type="number" name="VerificationCode" placeholder="Verification Code">
+        <button type="submit" class="btn btn-success btn-block justify-center Verify-btn" type="button">Verify</button>
+        <h5 style="text-align: center;margin-top:50px;">if you did not receive an email check the spam folder or <a href="./request_new_Email.php" style="color: #ffaa00;">Press here to request a new one</a></h5>
         <!-- TODO -->
         <h5 style="text-align: center;">if you are having a trouble, send us an email
-          <a href="./Support.html">Here</a>
+          <a href="./Support.html" style="color: #ffaa00;">Here</a>
         </h5>
       </div>
 
