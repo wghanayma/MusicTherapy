@@ -1,2 +1,0 @@
-# onemusic
-Web Course Project
