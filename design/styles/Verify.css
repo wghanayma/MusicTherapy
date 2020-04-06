@@ -61,5 +61,24 @@ body {
 
 .input-width {
   text-align: center;
-  width: 200px;
+  width: 400px;
+}
+
+@media only screen and (max-device-width: 767px) {
+  .input-width {
+    width: 300px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
