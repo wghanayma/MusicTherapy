@@ -19,155 +19,15 @@
   <meta charset="UTF-8" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search </title>
+  <title>Users </title>
   <link rel="shortcut icon" href="./images/Logo.png">
   <link rel="stylesheet" href="./icons/css/all.css">
-  <link rel="stylesheet" href="./styles/search_result.css" />
+  <link rel="stylesheet" href="./styles/users.css" />
 
 </head>
 
 <body>
-  <div class="modal fade" id="exampleModalLong1" tabindex="1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">
-            User PlayList
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" style="margin-right: 80px; position: fixed; bottom:3%; right:5%; z-index:1000;">
-          Save changes
-        </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" style="position: fixed; bottom:3%;right:5%; z-index: 1000;">
-          Close
-        </button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="modal fade" id="exampleModalLong" tabindex="1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">
-            <p>Global PlayList</p>
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" style="margin-right: 80px; position: fixed; bottom:3%; right:5%; z-index:1000;">
-          Save changes
-        </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" style="position: fixed; bottom:3%;right:5%; z-index: 1000;">
-          Close
-        </button>
-        </div>
-      </div>
-    </div>
-  </div>
   <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
     <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
             <span class="navbar-toggler-icon"></span>
@@ -246,7 +106,6 @@
         <div id=" demo " class="carousel slide " data-interval="false " data-ride="carousel ">
           <!-- The slideshow -->
           <div class="container carousel-inner no-padding ">
-
             <div class="carousel-item active ">
 
               <div class="col-xs-3 col-sm-3 col-md-3 ">
@@ -273,26 +132,27 @@
                   </a>
 
                 </div>
+                <button id="add_button" type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg">
+             
+                  <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
+                </button>
 
-
-                <div id="add_button" class="btn-group flex_nav" type="button">
-                  <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false ">
-
-                  <img id="add_button_img"  src="icons/icons8-add-48.png" /></button>
-                  </button>
-                  <div class="dropdown-menu">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="dropdown-item btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">user</button>
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="dropdown-item btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">global</button>
-                    <!-- Modal -->
-                  </div>
-                </div>
 
               </div>
-
-
+              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="container">
+                      <h2>Playlist</h2>
+                      <div class="list-group">
+                        <a href="#" class="list-group-item active">Night Music </a>
+                        <a href="#" class="list-group-item">Night Music</a>
+                        <a href="#" class="list-group-item">Night Music</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="col-xs-3 col-sm-3 col-md-3 ">
                 <div class="ih-item square colored effect6 mrgn-top ">
                   <a href="# ">
@@ -311,7 +171,7 @@
                 <button id="add_button" type="button" class="btn">
              
                 <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
-
+                </button>
               </div>
               <div class="col-xs-3 col-sm-3 col-md-3 ">
                 <div class="ih-item square colored effect6 mrgn-top ">
@@ -328,7 +188,7 @@
                     </div>
                   </a>
                 </div>
-                <button id="add_button" type="button" class="btn">
+                <button id="add_button" type="button" class="btn  ">
              
                 <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
                 </button>
