@@ -1,5 +1,4 @@
 body {
-
   margin-top: 71px;
   margin-left: 170px;
   background-color: #222222;
@@ -7,22 +6,22 @@ body {
 }
 
 #topbar {
-    padding-left: 8px;
-    padding-right: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 #Logo {
-    color: #ffaa00;
+  color: #ffaa00;
 }
 
 .justify-center {
-    margin-right: auto !important;
-    margin-left: auto !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 .justify-right {
-    margin-right: 0 !important;
-    margin-left: auto !important;
+  margin-right: 0 !important;
+  margin-left: auto !important;
 }
 
 .bg-dark {
@@ -30,68 +29,68 @@ body {
 }
 
 .font-nav-custom-color {
-    color: #ffaa00;
+  color: #ffaa00;
 }
 
 .shadow-bottom {
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, .15);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, .15);
 }
 
 .sidebar {
-    position: fixed;
-    /* top: 56px; */
-    margin-top: 56px;
-    height: calc(100% - 136px);
-    width: 170px;
-    z-index: auto;
-    transition: ease-in-out 0.2s;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    padding-top: 15px;
+  position: fixed;
+  /* top: 56px; */
+  margin-top: 56px;
+  height: calc(100% - 136px);
+  width: 170px;
+  z-index: auto;
+  transition: ease-in-out 0.2s;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 15px;
 }
 
 @media only screen and (max-device-width: 767px) {
-    body {
-        margin-left: 0px;
-    }
-    .sidebar {
-        /* background-color: rgba(255, 170, 0, 0.1) !important; */
-        width: 0px;
-        padding-top: 35px;
-    }
+  body {
+    margin-left: 0px;
+  }
+  .sidebar {
+    /* background-color: rgba(255, 170, 0, 0.1) !important; */
+    width: 0px;
+    padding-top: 35px;
+  }
 }
 
 .sidebar i {
-    padding: 6px 8px 6px 8px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #ffaa00;
-    display: inline;
-    white-space: nowrap;
-    margin: 0;
+  padding: 6px 8px 6px 8px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #ffaa00;
+  display: inline;
+  white-space: nowrap;
+  margin: 0;
 }
 
 .h-80px {
-    height: 80px;
+  height: 80px;
 }
 
 .z-index-0 {
-    z-index: 0;
+  z-index: 0;
 }
 
 .sidebar a {
-    padding: 6px 8px 6px 8px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #ffffff;
-    display: block;
-    white-space: nowrap;
-    margin: 0;
+  padding: 6px 8px 6px 8px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #ffffff;
+  display: block;
+  white-space: nowrap;
+  margin: 0;
 }
 
 .sidebar .division {
-    color: #ffaa00;
+  color: #ffaa00;
 }
 
 .sidebar a:hover {
@@ -104,5 +103,4 @@ body {
 
 .right-items ul li a:hover {
   color: #ffaa00;
->>>>>>> master
 }
