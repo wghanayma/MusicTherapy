@@ -18,12 +18,12 @@
   <script src="//unpkg.com/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
   <script src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>
 
-  <title>Music Therapy - Home of Music</title>
+  <title>Music Therapy - Create Supporter Account</title>
   <!-- <script src="./script/id3-minimized.js"></script> -->
   <!-- <link rel="import" href="http://192.168.1.100:9000/"> -->
   <link rel="shortcut icon" href="./images/Logo.png">
   <link rel="stylesheet" href="./icons/css/all.css">
-  <link rel="stylesheet" href="./styles/edit_account_information_overview.css" />
+  <link rel="stylesheet" href="./styles/create_support_account_information.css" />
   <script src="./script/index.js"></script>
 </head>
 
@@ -103,12 +103,11 @@
               <div class="form-group">
                 <label class="control-label col-sm-2" for="pwd">Country:</label>
                 <div class="col-sm-4">
-                  <select class="selectpicker countrypicker" data-live-search="true">
+                  <select class="selectpicker countrypicker" data-flag="true"></select>
 
                   <script>
                     $('.countrypicker').countrypicker();
                   </script>
-                  </select>
                 </div>
               </div>
               <div class="form-group">
@@ -121,12 +120,7 @@
             <h2>Change Your Password </h2>
             <form class="form-horizontal">
 
-              <div class="form-group">
-                <label class="control-label col-sm-4">Current Password:</label>
-                <div class="col-sm-4">
-                  <input type="password" class="form-control" placeholder="Enter Current Password">
-                </div>
-              </div>
+
               <div class="form-group">
                 <label class="control-label col-sm-4">New Password:</label>
                 <div class="col-sm-4">
