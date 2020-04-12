@@ -33,16 +33,16 @@ mydb = mysql.connector.connect(
 )
 
 def write_the_Music_File():
-    prev = open('/mnt/0669151d-bc33-44e6-a48d-a720c18ee6a0/.prev/Music', 'w')
+    prev = open('/mnt/Files/.prev/Music', 'w')
     for f in current:
         prev.write(f+"\n")
     prev.close()
 
-with open('/mnt/0669151d-bc33-44e6-a48d-a720c18ee6a0/.prev/Music') as f:
+with open('/mnt/Files/.prev/Music') as f:
     prev_music = [line.rstrip('\n') for line in f]
 
 # r=root, d=directories, f = files
-for r, d, f in os.walk('/mnt/0669151d-bc33-44e6-a48d-a720c18ee6a0/Music/'):
+for r, d, f in os.walk('/mn/Files/Music/'):
     for file in f:
         if '.m4a' in file:
             current.append(os.path.join(r, file))
