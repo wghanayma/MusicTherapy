@@ -13,9 +13,9 @@ services:
     container_name: mysqldb
   web-server:
     container_name: webserver
-    image: httpd
+    image: polinux/httpd-php:php72
     volumes:
-      - ../design/:/usr/local/apache2/htdocs/
+      - ../design/:/var/www/html/
     restart: always
     depends_on:
       - db
