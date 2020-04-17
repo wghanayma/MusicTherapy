@@ -9,6 +9,8 @@ services:
     restart: always
     ports:
       - 3306:3306
+    networks:
+      - connect
     env_file: ./mysqldb.env
     container_name: mysqldb
   web-server:
@@ -21,5 +23,12 @@ services:
       - db
     ports:
       - 80:80
+    networks:
+      - connect
+    links:
+      - "db:database"
     env_file: ./web-server.env
     container_name: webserver
+networks:
+  connect:
+    driver: bridge
