@@ -1,26 +1,12 @@
-.btn-success {
-  color: #000000;
-  background-color: #ffaa00;
-  border-color: rgb(255, 255, 255);
-}
-
-.btn-success:hover {
-  color: #000000;
-  background-color: #ffaa00;
-  border-color: rgb(255, 255, 255);
-}
-
-#up.btn-success:active {
-  color: #000000;
-  background-color: #ffaa00;
-  border-color: rgb(255, 255, 255);
-}
-
 body {
-  margin-top: 71px;
   margin-left: 170px;
-  background-color: #000000;
+  background-color: #222222;
   background-size: cover;
+}
+
+body,
+html {
+  height: 100%;
 }
 
 #topbar {
@@ -43,7 +29,7 @@ body {
 }
 
 .bg-dark {
-  background-color: #282828 !important;
+  background-color: #1a1a1a !important;
 }
 
 .font-nav-custom-color {
@@ -60,13 +46,12 @@ body {
   margin-top: 56px;
   height: calc(100% - 136px);
   width: 170px;
-  z-index: auto;
+  z-index: 2;
   transition: ease-in-out 0.2s;
   top: 0;
   left: 0;
   overflow-x: hidden;
   padding-top: 15px;
-  max-width: 190px;
 }
 
 @media only screen and (max-device-width: 767px) {
@@ -116,78 +101,10 @@ body {
   color: #ffaa00;
 }
 
-.jumbotron {
-  background-color: #000000;
-  color: white;
+.right-items ul li a {
+  text-decoration-color: #ffaa00;
 }
 
-.multiple-file-upload-wrap {
-  width: 100%;
-  max-width: 500px;
-  border: 1px solid #404040;
-  padding: 15px;
-  .mfu-clear {
-    clear: both;
-  }
-  .mfu-hide {
-    display: none;
-  }
-  .mfu-item {
-    background: #404040;
-    padding: 7px 7px 4px;
-  }
-  .mfu-file-number {
-    display: inline-block;
-    padding: 0 10px;
-    font-size: 1.1em;
-  }
-  .mfu-file-input {
-    display: inline-block;
-  }
-  .mfu-new-item-btn {
-    margin-top: 15px;
-    float: right;
-  }
-  .already-uploaded-files {
-    padding: 10px;
-    background: #404040;
-    margin-bottom: 15px;
-    .aup-title {
-      font-size: 1.2em;
-      margin-bottom: 15px;
-    }
-    .aup-item {
-      display: block;
-      padding: 5px;
-      &:not(:last-child) {
-        border-bottom: 1px solid #404040;
-      }
-      &:hover {
-        background: #dadada;
-      }
-    }
-    .aup-file-name {
-      display: inline-block;
-      margin-right: 15px;
-    }
-    .aup-delete-btn {
-      color: red;
-      display: inline-block;
-      float: right;
-      &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-      }
-    }
-    .aup-server-response {
-      display: none;
-      color: red;
-      padding: 5px 15px;
-      background: #fff;
-    }
-    .upload {
-      background: #fafafa;
-      color: red;
-    }
-  }
+.right-items ul li a:hover {
+  color: #ffaa00;
 }
