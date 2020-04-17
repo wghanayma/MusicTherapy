@@ -108,3 +108,10 @@ body {
 .right-items ul li a:hover {
   color: #ffaa00;
 }
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #ffaa00;
+}
