@@ -16,11 +16,10 @@
   <title>Music Therapy - Home of Music</title>
   <!-- <script src="./script/id3-minimized.js"></script> -->
   <!-- <link rel="import" href="http://192.168.1.100:9000/"> -->
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <link rel="shortcut icon" href="./images/Logo.png">
-  <link rel="stylesheet" href="/icons/css/all.css">
-  <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="./styles/index.css" />
   <script src="./script/index.js"></script>
+  <link rel="stylesheet" href="./icons/css/all.css">
 </head>
 
 <body>

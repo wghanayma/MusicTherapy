@@ -1,9 +1,6 @@
 body {
-  margin-top: 73px;
-  /* height: calc(100% - 71px); */
-  /* height: 100%; */
-  padding: 0;
-  background-image: url("../images/Login4\ -\ resized.jpeg.png");
+  margin-top: 71px;
+  background-image: url("../images/guest-homepage.jpg");
   /* background-size: contain; */
   background-color: #222222;
   background-size: cover;
@@ -84,9 +81,9 @@ body {
     padding-right: 10px;
   }
   /* .center-on-phone {
-            margin-left: auto !important;
-            margin-right: auto !important;
-        } */
+              margin-left: auto !important;
+              margin-right: auto !important;
+          } */
 }
 
 .sidebar i {
@@ -111,10 +108,29 @@ body {
 .text-center {
   color: #ffaa00;
   /* text-transform: uppercase; */
-  font-size: 25px;
+  /* font-size: 25px; */
   /* margin: -50px 0 80px 0; */
   display: block;
   text-align: center;
+}
+
+.bottom {
+  height: 71px;
+  position: absolute;
+  width: 100%;
+  top: 100%;
+}
+
+.box {
+  position: absolute;
+  /* left: 50%;
+  top: 50%; */
+  /* transform: translate(-50%, -50%); */
+  height: calc(100% - 71px);
+  width: 100%;
+  background-color: #222222f0;
+  /* border-radius: 3px; */
+  padding: 50px 50px;
 }
 
 .btn {
@@ -132,6 +148,5 @@ body {
 }
 
 .btn:hover {
-  color: white;
-  background-color: #f0a000;
+  color: #fff;
 }

@@ -9,17 +9,24 @@ services:
     restart: always
     ports:
       - 3306:3306
+    networks:
+      - connect
     env_file: ./mysqldb.env
-    container_name: mysqldb
   web-server:
     container_name: webserver
-    image: polinux/httpd-php:php72
+    image: php:7.2.30-apache-buster
     volumes:
-      - ../design/:/var/www/html/
+      - ../php/:/var/www/html/
     restart: always
     depends_on:
       - db
     ports:
       - 80:80
+    networks:
+      - connect
+    links:
+      - "db:database"
     env_file: ./web-server.env
-    container_name: webserver
+networks:
+  connect:
+    driver: bridge
