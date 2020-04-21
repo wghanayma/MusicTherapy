@@ -16,7 +16,7 @@ services:
     container_name: webserver
     image: php:7.2.30-apache-buster
     volumes:
-      - ../php/:/var/www/html/
+      - ../www/:/var/www/html/
     restart: always
     depends_on:
       - db
