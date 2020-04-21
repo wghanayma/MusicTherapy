@@ -1,17 +1,17 @@
 body {
-  margin-top: 71px;
   margin-left: 170px;
-  background-color: #404040;
+  background-color: #222222;
   background-size: cover;
+}
+
+.container {
+  margin-top: 40px;
+  margin-bottom: 50px;
 }
 
 #topbar {
   padding-left: 8px;
   padding-right: 8px;
-}
-
-.bg-gray {
-  background-color: #404040 !important;
 }
 
 #Logo {
@@ -28,27 +28,17 @@ body {
   margin-left: auto !important;
 }
 
-.margin-160-left {
-  margin-left: 160px;
-}
-
 .bg-dark {
-  color: #ffaa00;
-  background-color: #282828 !important;
+  background-color: #1a1a1a !important;
 }
 
 .font-nav-custom-color {
   color: #ffaa00;
 }
 
-.fluid-main {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 14px;
+.shadow-bottom {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, .15);
 }
-
-
-/* Style the sidebar - fixed full height */
 
 .sidebar {
   position: fixed;
@@ -56,12 +46,23 @@ body {
   margin-top: 56px;
   height: calc(100% - 136px);
   width: 170px;
-  z-index: auto;
+  z-index: 3;
   transition: ease-in-out 0.2s;
   top: 0;
   left: 0;
   overflow-x: hidden;
   padding-top: 15px;
+}
+
+@media only screen and (max-device-width: 767px) {
+  body {
+    margin-left: 0px;
+  }
+  .sidebar {
+    /* background-color: rgba(255, 170, 0, 0.1) !important; */
+    width: 0px;
+    padding-top: 35px;
+  }
 }
 
 .sidebar i {
@@ -74,8 +75,13 @@ body {
   margin: 0;
 }
 
+.h-80px {
+  height: 80px;
+}
 
-/* Style sidebar links */
+.z-index-0 {
+  z-index: 0;
+}
 
 .sidebar a {
   padding: 6px 8px 6px 8px;
@@ -95,95 +101,17 @@ body {
   color: #ffaa00;
 }
 
-
-/* Style the main content */
-
-main {
-  margin-left: 160px;
-  /* Same as the width of the sidenav */
-  padding: 0px 10px;
+.right-items ul li a {
+  text-decoration-color: #ffaa00;
 }
 
-
-/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
-
-@media only screen and (max-device-width: 767px) {
-  body {
-    margin-left: 0px;
-  }
-  .sidebar {
-    /* background-color: rgba(255, 170, 0, 0.1) !important; */
-    width: 0px;
-    padding-top: 35px;
-  }
+.right-items ul li a:hover {
+  color: #ffaa00;
 }
 
-.h-80px {
-  height: 80px;
-}
-
-.player {
-  margin-bottom: 10px;
-}
-
-.dropdown-toggle.btn-default {
-  color: #292b2c;
-  background-color: #fff;
-  border-color: #ccc;
-}
-
-.bootstrap-select.show>.dropdown-menu>.dropdown-menu {
-  display: block;
-}
-
-.bootstrap-select>.dropdown-menu>.dropdown-menu li.hidden {
-  display: none;
-}
-
-.bootstrap-select>.dropdown-menu>.dropdown-menu li a {
-  display: block;
-  width: 100%;
-  padding: 3px 1.5rem;
-  clear: both;
-  font-weight: 400;
-  color: #292b2c;
-  text-align: inherit;
-  white-space: nowrap;
-  background: 0 0;
-  border: 0;
-  text-decoration: none;
-}
-
-.bootstrap-select>.dropdown-menu>.dropdown-menu li a:hover {
-  background-color: #f4f4f4;
-}
-
-.bootstrap-select>.dropdown-toggle {
-  width: 100%;
-}
-
-.dropdown-menu>li.active>a {
-  color: #fff !important;
-  background-color: #337ab7 !important;
-}
-
-.bootstrap-select .check-mark {
-  line-height: 14px;
-}
-
-.bootstrap-select .check-mark::after {
-  font-family: "FontAwesome";
-  content: "\f00c";
-}
-
-.bootstrap-select button {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
-/* Make filled out selects be the same size as empty selects */
-
-.bootstrap-select.btn-group .dropdown-toggle .filter-option {
-  display: inline !important;
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #ffaa00;
 }
