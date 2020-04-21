@@ -1,9 +1,8 @@
 body {
-  margin-top: 73px;
-  /* height: calc(100% - 71px); */
-  /* height: 100%; */
-  padding: 0;
-  background-image: url("../images/Login4\ -\ resized.jpeg.png");
+  margin-top: 71px;
+  height: max-content;
+  width: max-content;
+  background-image: url("../images/Login4\ -\ resized.jpeg");
   /* background-size: contain; */
   background-color: #222222;
   background-size: cover;
@@ -117,6 +116,21 @@ body {
   text-align: center;
 }
 
+.box {
+  position: absolute;
+  left: calc(50% - 200px);
+  width: 400px;
+  height: 400px;
+  top: calc(50% - 200px);
+  /* margin: auto; */
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+  /* transform: translate(0, calc(50% - 200px)); */
+  background-color: #222222f0;
+  /* border-radius: 3px; */
+  padding: 50px 50px;
+}
+
 .btn {
   color: #1a1a1a;
   background-color: #ffaa00;
@@ -132,6 +146,5 @@ body {
 }
 
 .btn:hover {
-  color: white;
-  background-color: #f0a000;
+  color: #fff;
 }

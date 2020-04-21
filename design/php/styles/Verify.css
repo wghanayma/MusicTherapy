@@ -1,0 +1,84 @@
+body {
+  margin-top: 71px;
+  background-color: #222222;
+}
+
+#topbar {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+#Logo {
+  color: #ffaa00;
+}
+
+.justify-center {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.justify-right {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+.justify-left {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+
+.bg-dark {
+  background-color: #1a1a1a !important;
+}
+
+.right-items ul li a {
+  text-decoration-color: #ffaa00;
+}
+
+.right-items ul li a:hover {
+  color: #ffaa00;
+}
+
+.container {
+  color: white;
+  padding-top: 20px;
+  /* text-align: center; */
+}
+
+.container * {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.Verify-btn {
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  /* margin-top: 50px; */
+  font-weight: bold;
+  font-size: larger;
+}
+
+.input-width {
+  text-align: center;
+  width: 400px;
+}
+
+@media only screen and (max-device-width: 767px) {
+  .input-width {
+    width: 300px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

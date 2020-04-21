@@ -14,7 +14,7 @@ services:
     env_file: ./mysqldb.env
   web-server:
     container_name: webserver
-    image: polinux/httpd-php:php72
+    image: php:7.2.30-apache-buster
     volumes:
       - ../design/:/var/www/html/
     restart: always
