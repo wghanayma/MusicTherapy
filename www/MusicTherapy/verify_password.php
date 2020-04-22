@@ -27,23 +27,27 @@
   </nav>
   <div class="container">
     <!-- TODO -->
-    <form method="POST" action="/reset_password.php">
-      <h1 style="text-align: center;">Please Check Your E-Mail</h1>
-      <!-- <h4>Verify your email address to gain access to your account.</h4> -->
-      <h4 style="text-align: center;">We sent an Email to Support@MusicTherapy.com with a code to reset your password.</h4>
-      <div class="container" style="padding-top: 50px;">
-        <h3 style="text-align: center;">Please Enter Your Code Here:</h3>
+    <?php
+               session_save_path("/tmp");
+               session_start();
+               if (empty($_SESSION['emailVerify']))
+               header("Location: ./login.php");
+               else
+               {
 
-        <input required class="form-control input-width justify-center" type="number" name="VerificationCode" placeholder="Verification Code">
-        <button type="submit" class="btn btn-success btn-block justify-center Verify-btn" type="button">Verify</button>
-        <h5 style="text-align: center;margin-top:50px;">if you did not receive an email check the spam folder or <a href="./request_new_Email.php" style="color: #ffaa00;">Press here to request a new one</a></h5>
-        <!-- TODO -->
-        <h5 style="text-align: center;">if you are having a trouble, send us an email
-          <a href="./Support.html" style="color: #ffaa00;">Here</a>
-        </h5>
-      </div>
+              $to=$_SESSION['emailVerify'];
+              $subject="Verify Your Account";
+              $message="Music Thearpy random number";
+              $EmailFrom="verify@MusicThearpy.com";
+              $header="From :". $EmailFrom;
+              mail ($to,$subject,$message,$header);
+            echo '<h5 class="text text-success" style="text-align: center;margin-top:50px; font-size: 30px">We Send Massage to you,Check Your Email </h5>';
+            echo '<h5 class="text text-success" style="text-align: center;margin-top:50px; font-size: 30px">'. $to.' </h5>';
+               }
 
-    </form>
+            ?>
+
+
   </div>
 </body>
 

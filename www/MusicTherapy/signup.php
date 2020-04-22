@@ -1,3 +1,73 @@
+<?php
+    if(isset($_POST['signup'])){
+      include './db_conn.php';
+      $userName = $_POST['uname'];
+      $firstname = $_POST['fname'];
+      $midname = $_POST['mname'];
+      $lastname = $_POST['lname'];
+      $email = $_POST['email'];
+      $confEmail = $_POST['emailConfirm'];
+    $password = $_POST['pwd'];
+      $passwordConfirm = $_POST['passwordConfirm'];
+      $gender = $_POST['gender'];
+      $day = $_POST['day'];
+      $month=$_POST['month'];
+      $year=$_POST['year'];
+      $bday = date_create($year."/".$month."/".$day);
+      #Checking User
+
+      $sql="SELECT UserName FROM UserTable WHERE UserName=?;";
+      $stmt= $pdo->prepare($sql);
+      $stmt->execute([$userName]);
+      $stmt->fetchAll();
+      $NOU=$stmt->rowCount();
+      #Checking Email
+      $sql = "SELECT Email FROM UserTable Where Email=?;";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([$email]);
+      $stmt->fetchAll();
+      $NOE = $stmt->rowCount();
+      if ($NOE!=0 || $NOU!=0 || $password != $passwordConfirm || $email!=$confEmail){
+        # Will not be executed if one of the above is false
+      }else{
+        #Will be executed if only the username doesn't exist in the
+        #database and the email don't exist and the two password are equals.
+        $to=$email;
+        $subject="Verify Your Account";
+        $message="Music Thearpy";
+        $EmailFrom="verify@MusicThearpy.com";
+        $header="From :". $EmailFrom;
+        mail ($to,$subject,$message,$header);
+        $hashedpassword = password_hash($password , PASSWORD_DEFAULT);
+        $sql="INSERT INTO UserTable VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+        $stmt= $pdo->prepare($sql);
+        $idu=md5($userName);
+        $stmt->execute([$idu,$userName,$firstname,$midname,$lastname,$hashedpassword,date_format($bday,"Y/m/d"),$email,"user",$gender,0]);
+        session_save_path("/tmp");
+        session_start();
+        $_SESSION['username']=$userName;
+        header("Location: ./verify.php?success");
+        // setcookie("user", $userName, time() + 3600);#set
+        // echo $_COOKIE["user"];#get
+        // setcookie("user", $userName, time() - 3600);#delete
+
+        // setcookie("PASSWORD", $password, time() + 3600);#set
+        // echo $_COOKIE["PASSWORD"];#get
+
+
+        // setcookie("PASSWORD", $userName, time() - 3600);#delete
+
+
+        // $_SESSION['user']="sad"
+        // session_start();
+        // session_unset();
+
+        //  session_destroy();
+        // $url = "./verify.php";
+
+      }
+  }
+?>
 <html>
 
 <head>
@@ -24,41 +94,56 @@
       <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
       <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
     </div>
-
   </nav>
 
   <div class="container-fluid" style="color: #ffaa00;">
-    <form method="POST" action="/action_page.php" class="is-valid justify-center" style="max-width: 500px;">
+    <form method="POST" action="./signup.php" class="is-valid justify-center" style="max-width: 500px;">
       <div style="text-align: center;">
         <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:150px;height:150px"></a>
         <label style="font-size: 30px;">Sign Up</label>
       </div>
       <div class="form-group">
         <label for="text">Username :</label>
-        <input type="text" class="form-control" placeholder="Username" id="uname" required>
+        <input type="text" class="form-control" placeholder="Username" name="uname" id="uname" required>
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">Please Enter an Username.</div>
       </div>
       <div class="form-group">
+        <label for="text">First Name :</label>
+        <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please Enter an FirstName.</div>
+      </div>
+      <div class="form-group">
+        <label for="text">Middle Name :</label>
+        <input type="text" class="form-control" placeholder="Middle Name" name="mname" id="mname">
+      </div>
+      <div class="form-group">
+        <label for="text">Last Name :</label>
+        <input type="text" class="form-control" placeholder="Last Name" name="lname" id="lname" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please Enter an Last Name.</div>
+      </div>
+      <div class="form-group">
         <label for="email">Email address :</label>
-        <input type="email" class="form-control" placeholder="Email Address" id="email" required>
+        <input type="email" class="form-control" placeholder="Email Address" name="email" id="email" required>
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback">Please fill Your Email.</div>
       </div>
       <div class="form-group">
         <label for="email">Confirm Email Address :</label>
-        <input name="emailConfirm" class="form-control" type="email" placeholder="Confirm Email Address" id="confemail" required/>
+        <input name="emailConfirm" class="form-control" type="email"  placeholder="Confirm Email Address" id="confemail" required/>
         <div id="validMessage"></div>
       </div>
       <div class="form-group">
         <label for="pwd">Password :</label>
-        <input type="password" class="form-control" placeholder="Enter password" id="pwd" required>
+        <input type="password" class="form-control" placeholder="Enter password" name="pwd" id="pwd" required>
         <div class="valid-feedback">Valid.</div>
         <div class="invalid-feedback" id="confirmemail">Please Enter a Password.</div>
       </div>
       <div class="form-group">
         <label for="pwd">Confirm Password :</label>
-        <input name="passwordConfirm" type="passwor" class="form-control" placeholder="Confirm password" id="confpwd" required>
+        <input name="passwordConfirm" type="password" class="form-control" placeholder="Confirm password" id="confpwd" required>
       </div>
       <div class="form-group">
         <label for="my-input">Birth Date :</label><br>
@@ -70,16 +155,43 @@
       </div>
       <div class="form-group">
         <label for="male">Gender :</label>
-        <input type="radio" id="male" name="gender" value="male">
+        <input type="radio" id="male" name="gender" value="male" checked>
         <label for="male">Male</label>
         <input type="radio" id="female" name="gender" value="female">
         <label for="female">Female</label>
       </div>
       <div style="text-align: center;">
-        <button type="submit" class="btn btn-primary justify-center">Submit</button>
+        <button type="submit" name="signup" class="btn btn-primary justify-center">Sign up</button>
       </div>
-    </form>
+      <div style="text-align: center;">
+        <?php
+          if (isset($_POST['signup'])){
+
+            if($NOU!=0){
+              echo "<label class='text text-danger' style='font-size: 30px '  name=\"message\">The UserName has been taken please choose another one</label>";
+              exit();
+            }
+
+            else if($NOE!=0){
+              echo "<label class='text text-danger' style='font-size: 30px '  name=\"message\">The Email has been used please choose another one</label>";
+              exit();
+            }
+
+           else if($email!=$confEmail){
+              echo "<label class='text text-danger' style='font-size: 30px ' name=\"message\">the two Emails dont match</label>";
+              exit();
+            }
+
+           else if($password!=$passwordConfirm){
+              echo "<label class='text text-danger' style='font-size: 30px ' name=\"message\">the two password dont match</label>";
+              exit();
+            }
+          }
+        ?>
+      </div>
+     </form>
   </div>
+
 </body>
 
 </html>

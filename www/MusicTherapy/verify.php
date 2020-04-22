@@ -1,3 +1,39 @@
+<?php
+  include './db_conn.php';
+
+    session_save_path("/tmp");
+    session_start();
+  $userN=$_SESSION['username'];
+  $sql = "SELECT Email FROM UserTable Where UserName=?;";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$userN]);
+  $result=$stmt->fetchAll();
+  foreach ($result as $email) {
+    $emailV=$email['Email'];
+  }
+  $_SESSION['emailVerify']=$emailV;
+  if(isset($_POST['Verify'])){
+    $userCode=$_POST['verifyCode'];
+    $sql = "SELECT verified,Email FROM UserTable Where UserName=?;";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$userN]);
+    $result=$stmt->fetchAll();
+    foreach ($result as $code) {
+      $codeV=$code['verified'];
+
+
+    }
+    if($codeV==$userCode){
+      sleep(1);
+
+      header("Location: ./login.php?verified");
+    }
+  }
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -27,19 +63,41 @@
   </nav>
   <div class="container">
     <!-- TODO -->
-    <form method="post" action="">
+    <form method="post" action="./verify.php">
       <h1 style="text-align: center;">Please Check Your E-Mail</h1>
       <!-- <h4>Verify your email address to gain access to your account.</h4> -->
-      <h4 style="text-align: center;">We sent an Email to Support@MusicTherapy.com with a code to verify your account.</h4>
+      <h4 style="text-align: center;">We sent an Email to
+      <?php
+     if (empty($_SESSION['emailVerify']))
+     header("Location: ./login.php");
+       else echo $_SESSION['emailVerify'];
+
+     ?>
+      with a code to verify your account.</h4>
+
       <div class="container" style="padding-top: 50px;">
         <h3 style="text-align: center;">Please Enter Your Code Here:</h3>
+        <input required class="form-control input-width justify-center" name="verifyCode" type="number" name="VerificationCode" placeholder="Verification Code">
+        <button type="submit" name="Verify" class="btn btn-success btn-block justify-center Verify-btn" type="button">Verify</button>
+        <?php
 
-        <input required class="form-control input-width justify-center" type="number" name="VerificationCode" placeholder="Verification Code">
-        <button type="submit" class="btn btn-success btn-block justify-center Verify-btn" type="button">Verify</button>
-        <h5 style="text-align: center;margin-top:50px;">if you did not receive an email check the spam folder or <a href="./request_new_Email.php" style="color: #ffaa00;">Press here to request a new one</a></h5>
+          if (isset($_POST['Verify'])){
+
+            if($codeV!=$userCode){
+
+              echo '<h5 class="text text-danger" style="text-align: center;margin-top:50px; font-size: 30px">Wrong Code. </h5>';
+
+            }
+
+
+          }
+
+        ?>
+
+        <h5 style="text-align: center;margin-top:50px;">if you did not receive an email check the spam folder or <a href="./verify_password.php" name="newV" style="color: #ffaa00;">Press here to request a new one</a></h5>
         <!-- TODO -->
         <h5 style="text-align: center;">if you are having a trouble, send us an email
-          <a href="./Support.html" style="color: #ffaa00;">Here</a>
+          <a href="./support.php" style="color: #ffaa00;">Here</a>
         </h5>
       </div>
 

@@ -25,8 +25,12 @@
     </div>
 
   </nav>
+  <?php
+
+
+  ?>
   <div class="container box">
-    <form class="justify-center" style="width: 100%;max-width: 300px;" method="POST" action="./index.html">
+    <form class="justify-center" style="width: 100%;max-width: 300px;" method="POST" action="./login.php">
       <label class="text-center">Login</label>
       <label style="display: block;color: #ffaa00;font-size: 18px;">Username :</label>
       <input type="text" required style="display: block;width: inherit;" />
