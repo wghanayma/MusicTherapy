@@ -1,32 +1,129 @@
-version: "3.3"
+version: "3"
 
 services:
-  db:
-    container_name: mysql
-    image: mysql:5.7
-    volumes:
-      - ../mysqldb:/var/lib/mysql
-    restart: always
+  webserver:
+    build:
+      context: ./bin/php72
+    container_name: php72
+    restart: "always"
     ports:
-      - 3306:3306
-    networks:
-      - connect
-    env_file: ./mysqldb.env
-  web-server:
-    container_name: webserver
-    image: php:7.2.30-apache-buster
-    volumes:
-      - ../php/:/var/www/html/
-    restart: always
-    depends_on:
-      - db
-    ports:
-      - 80:80
+      - "80:80"
+      - "443:443"
+      - "9000:9000"
     networks:
       - connect
     links:
-      - "db:database"
-    env_file: ./web-server.env
+      - database
+      - phpmyadmin
+      - musicserver
+      - artserver
+    volumes:
+      - ../www/:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+      # - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
+      # - ${LOG_DIR-./logs/apache2}:/var/log/apache2
+    #command: /bin/sh /var/www/mail_config.sh
+  database:
+    build:
+      context: "./bin/mysql"
+    container_name: "database"
+    restart: "always"
+    ports:
+      - "3306:3306"
+    networks:
+      - connect
+    volumes:
+      - ../mysqldb:/var/lib/mysql
+      - ../mysqldbLOGS:/var/log/mysql
+    env_file:
+      - ./mysqldb.env
+      # MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      # MYSQL_DATABASE: ${MYSQL_DATABASE}
+      # MYSQL_USER: ${MYSQL_USER}
+      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "phpmyadmin"
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_USER: Mohammed
+      PMA_PASSWORD: Mohammed
+      MYSQL_ROOT_PASSWORD: Mohammed
+      MYSQL_USER: Mohammed
+      MYSQL_PASSWORD: Mohammed
+    ports:
+      - "8080:80"
+    volumes:
+      - /sessions
+    networks:
+      - connect
+  artserver:
+    container_name: artserver
+    image: polinux/httpd-php:php72
+    volumes:
+      - /mnt/Files/.AlbumImages/:/var/www/html/
+    restart: always
+    ports:
+       - 9001:80
+    networks:
+       - connect
+  musicserver:
+    container_name: musicserver
+    image: polinux/httpd-php:php72
+    volumes:
+      - /mnt/Files/Music/:/var/www/html/
+    restart: always
+    ports:
+       - 9002:80
+    networks:
+       - connect
+#     env_file: ./web-server.env
+      # - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+  # redis:
+  #   container_name: "redis"
+  #   image: redis:latest
+  #   ports:
+  #     - "127.0.0.1:${HOST_MACHINE_REDIS_PORT}:6379"
+# version: "3.3"
+#   db:
+#     container_name: mysql
+#     image: mysql:5.7
+#     volumes:
+#       - ../mysqldb:/var/lib/mysql
+#     restart: always
+#     ports:
+#       - 3306:3306
+#     networks:
+#       - connect
+#     env_file: ./mysqldb.env
+#   web-server:
+#     container_name: webserver
+#     build: ./php
+#     # image: polinux/httpd-php:php72
+#     # command:
+#     # - yum -y install nano
+#     # - ln -s /etc/httpd/conf.d/php72-php.conf /etc/httpd/conf.d/php.conf
+#     # - mkdir -p /data/tmp/php/sessions
+#     # - yum -y install epel-release
+#     # - yum -y install postfix
+#     volumes:
+#       - ../www/:/var/www/html/
+#       # - ./php/php.ini:/etc/php.ini
+#     restart: always
+#     depends_on:
+#       - db
+#       - smtp
+#     ports:
+#       - 80:80
+#     networks:
+#       - connect
+#     links:
+#       - "db:database"
+#       - "smtp:mailhost"
+#     env_file: ./web-server.env
 networks:
   connect:
     driver: bridge
