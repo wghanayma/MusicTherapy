@@ -1,3 +1,12 @@
+<?php
+session_save_path("/tmp");
+session_start();
+$tao = $_SESSION['usernamelogin'];
+if (!isset($tao)) {
+  header("Location: index_guest.php");
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -31,22 +40,24 @@
 
   <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
     <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div style="margin-left:3.5px;display: inline-flex;">
       <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
       <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music
-                Therapy</a>
+        Therapy</a>
     </div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <img class="img-fluid img" src="./images/p.svg" alt="Account Image" style="width: 37px;height:30px">
-        </button>
+      <img class="img-fluid img" src="./images/p.svg" alt="Account Image" style="width: 37px;height:30px">
+    </button>
 
     <div class="collapse  navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto justify-right">
         <li class="nav-item active">
-          <label class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">username </label>
+          <?php
+          echo '<a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">' . $tao . ' </a>'; ?>
+
           <span class="sr-only">(current)</span>
         </li>
         <li class="nav-item active">
@@ -119,7 +130,7 @@
               </div>
               <button id="add_button" type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg">
 
-                  <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
+                <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
               </button>
 
 
@@ -472,7 +483,7 @@
               </div>
               <button id="add_button" type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg">
 
-                  <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
+                <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
               </button>
 
 
@@ -797,7 +808,7 @@
         </h4>
       </div>
       <audio src="" autoplay loop class="player col-lg-8 " controls>
-    </audio>
+      </audio>
       <div class="col-lg-2">
       </div>
     </div>

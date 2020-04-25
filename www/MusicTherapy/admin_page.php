@@ -1,3 +1,12 @@
+<?php
+session_save_path("/tmp");
+session_start();
+$tao = $_SESSION['usernamelogin'];
+if (!isset($tao)) {
+  header("Location: index_guest.php");
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -33,13 +42,14 @@
     </div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <img class="img-fluid img" src=".././images/p.svg" alt="Account Image"  style="width: 37px;height:30px">
+      <img class="img-fluid img" src=".././images/p.svg" alt="Account Image" style="width: 37px;height:30px">
     </button>
 
     <div class="collapse navbar-collapse right-items" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto justify-right">
         <li class="nav-item active">
-          <a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">Username </a>
+          <?php
+          echo '<a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">' . $tao . ' </a>'; ?>
           <span class="sr-only">(current)</span>
         </li>
         <li class="nav-item active">

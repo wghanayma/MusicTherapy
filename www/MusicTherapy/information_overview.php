@@ -1,3 +1,12 @@
+<?php
+session_save_path("/tmp");
+session_start();
+$tao = $_SESSION['usernamelogin'];
+if (!isset($tao)) {
+  header("Location: index_guest.php");
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -5,13 +14,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
   <!-- BootStrap CDN for JQuery -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
   <!-- BootStrap CDN for popper -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
   <!-- BootStrap CDN for JavaScript -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.3/jsmediatags.js"></script>
   <title>Admin Page</title>
   <!-- <script src="./script/id3-minimized.js"></script> -->
@@ -28,22 +44,26 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div style="margin-left:3.5px;display: inline-flex;">
-      <a href="./index.html"><img src=".././images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
+      <a href="./index.html"><img src=".././images/Logo.png" href="./index.html" class="mx-auto d-block"
+          style="width:55px;height:55px"></a>
       <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
     </div>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <img class="img-fluid img" src=".././images/p.svg" alt="Account Image"  style="width: 37px;height:30px">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <img class="img-fluid img" src=".././images/p.svg" alt="Account Image" style="width: 37px;height:30px">
     </button>
 
     <div class="collapse navbar-collapse right-items" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto justify-right">
         <li class="nav-item active">
-          <a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">Username </a>
+          <a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;"
+            href="./Login.html">Username </a>
           <span class="sr-only">(current)</span>
         </li>
         <li class="nav-item active">
-          <a class="nav-link font-nav-custom-color" style="text-align: right;margin-right: 7px; " href="./Login.html">Logout</a>
+          <a class="nav-link font-nav-custom-color" style="text-align: right;margin-right: 7px; "
+            href="./Login.html">Logout</a>
           <span class="sr-only">(current)</span>
         </li>
 
@@ -74,31 +94,40 @@
 
 
         <div class="form-group row ">
-          <label style="text-align: center;display: block;color: #ffaa00; " for="staticEmail " class="col-sm-6 col-form-label ">Username</label>
+          <label style="text-align: center;display: block;color: #ffaa00; " for="staticEmail "
+            class="col-sm-6 col-form-label ">Username</label>
           <div class="col-sm-6 ">
-            <input style="text-align: center;display: block; color: #ffaa00; " type="text " readonly class="form-control-plaintext " id="staticEmail " value="heool">
+            <input style="text-align: center;display: block; color: #ffaa00; " type="text " readonly
+              class="form-control-plaintext " id="staticEmail " value="heool">
           </div>
         </div>
         <div class="form-group row ">
-          <label style="text-align: center;display: block;color: #ffaa00; " for="staticEmail " class="col-sm-6 col-form-label ">Gender</label>
+          <label style="text-align: center;display: block;color: #ffaa00; " for="staticEmail "
+            class="col-sm-6 col-form-label ">Gender</label>
           <div class="col-sm-6 ">
-            <input style="text-align: center;display: block; color: #ffaa00; " type="text " readonly class="form-control-plaintext " id="staticEmail " value="Male ">
+            <input style="text-align: center;display: block; color: #ffaa00; " type="text " readonly
+              class="form-control-plaintext " id="staticEmail " value="Male ">
           </div>
         </div>
         <div class="form-group row ">
-          <label style="text-align: center;display: block;color: #ffaa00; " for="staticEmail " class="col-sm-6 col-form-label ">Data of birth</label>
+          <label style="text-align: center;display: block;color: #ffaa00; " for="staticEmail "
+            class="col-sm-6 col-form-label ">Data of birth</label>
           <div class="col-sm-6 ">
-            <input style="text-align: center;display: block; color: #ffaa00; " type="text " readonly class="form-control-plaintext " id="staticEmail " value="11/1/1994 ">
+            <input style="text-align: center;display: block; color: #ffaa00; " type="text " readonly
+              class="form-control-plaintext " id="staticEmail " value="11/1/1994 ">
           </div>
         </div>
         <div class="form-group row ">
-          <label style="text-align: center;display: block;color: #ffaa00; " for="staticEmail " class="col-sm-6 col-form-label ">Country</label>
+          <label style="text-align: center;display: block;color: #ffaa00; " for="staticEmail "
+            class="col-sm-6 col-form-label ">Country</label>
           <div class="col-sm-6 ">
-            <input style="text-align: center;display: block; color: #ffaa00; " type="text " readonly class="form-control-plaintext " id="staticEmail " value="Palestine ">
+            <input style="text-align: center;display: block; color: #ffaa00; " type="text " readonly
+              class="form-control-plaintext " id="staticEmail " value="Palestine ">
           </div>
         </div>
         <div class="form-group row justify-center">
-          <button href="./edit_account_information_overview.html" type="button " class="btn btn-primary ">EDIT PROFILE</button>
+          <button href="./edit_account_information_overview.html" type="button " class="btn btn-primary ">EDIT
+            PROFILE</button>
 
         </div>
       </div>
@@ -112,7 +141,8 @@
   <!-- TODO Edit Navbar -->
   <nav class=" navbar navbar-expand-md navbar-dark bg-dark fixed-bottom z-index-0 h-80px " id="bottombar ">
     <img src=" " id="Cover ">
-    <audio src="http://192.168.1.100:9000/Aitana%20-%20Spoiler/01%20Nada%20Sale%20Mal.m4a " autoplay class="col-md-12 player " controls>
+    <audio src="http://192.168.1.100:9000/Aitana%20-%20Spoiler/01%20Nada%20Sale%20Mal.m4a " autoplay
+      class="col-md-12 player " controls>
     </audio>
   </nav>
 </body>

@@ -1,9 +1,17 @@
+<?php
+session_save_path("/tmp");
+session_start();
+$tao = $_SESSION['usernamelogin'];
+if (!isset($tao)) {
+    header("Location: index_guest.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    ]]
 
     <head>
         <meta charset="UTF-8" />
@@ -33,23 +41,24 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
         <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div style="margin-left:3.5px;display: inline-flex;">
             <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
             <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <img class="img-fluid img" src="./images/p.svg" alt="Account Image"  style="width: 37px;height:30px">
-    </button>
+            <img class="img-fluid img" src="./images/p.svg" alt="Account Image" style="width: 37px;height:30px">
+        </button>
 
         <div class="collapse  navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto justify-right">
 
 
                 <li class="nav-item active">
-                    <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; " href="./Login.html">username</a>
+                    <?php
+                    echo '<a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">' . $tao . ' </a>'; ?>
                     <span class="sr-only">(current)</span>
                 </li>
 
@@ -70,8 +79,8 @@
                     <h5 class="modal-title" id="exampleModalLabel">Create new playlist
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     Playlist Name
@@ -90,11 +99,11 @@
 
     <!-- The sidebar -->
     <div class="sidebar bg-dark" id="sidebar" style="padding-top: 35px;">
-        <a style="font-size: 20px;" href="./index.html"><i class="fas fa-home" ></i > Home</a>
-        <a style="font-size: 20px;" href="./search.html"><i class="fas fa-search" ></i > Search</a>
-        <a style="font-size: 20px;" href="./Your-Library.html"><i class="fas fa-list-music" ></i > Your Library</a>
+        <a style="font-size: 20px;" href="./index.html"><i class="fas fa-home"></i> Home</a>
+        <a style="font-size: 20px;" href="./search.html"><i class="fas fa-search"></i> Search</a>
+        <a style="font-size: 20px;" href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
         <a style="font-size: 20px;" class="division">-----------------------</a>
-        <a style="font-size: 20px;" href="#" class="cpl" data-toggle="modal" data-target="#exampleModal"><i  style="margin-left: -9px;"  class=" fas fa-file-plus" ></i >Create PlayList</a>
+        <a style="font-size: 20px;" href="#" class="cpl" data-toggle="modal" data-target="#exampleModal"><i style="margin-left: -9px;" class=" fas fa-file-plus"></i>Create PlayList</a>
     </div>
     <div class="row">
 
@@ -534,7 +543,7 @@
 
             <audio src="" autoplay loop class="player col-lg-8 " controls>
 
-        </audio>
+            </audio>
 
 
             <div class="col-lg-2">

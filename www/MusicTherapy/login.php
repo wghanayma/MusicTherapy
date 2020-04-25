@@ -1,3 +1,36 @@
+<?php
+include './db_conn.php';
+session_save_path("/tmp");
+session_start();
+if (isset($_POST['login'])) {
+  $user = $_POST['user'];
+  $pass = $_POST['pass'];
+  $sql = "SELECT UserName,Password,VCode FROM UserTable Where UserName=?;";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$user]);
+  $result = $stmt->fetchAll();
+
+  $NOFR = $stmt->rowCount();
+  if ($NOFR != 0) {
+    foreach ($result as $INFO) {
+      $hpass = $INFO['Password'];
+      $UserV = $INFO['VCode'];
+    }
+    if (password_verify($pass, $hpass)) {
+      if ($UserV == -1) {
+        $_SESSION['usernamelogin'] = $user;
+        header("Location: ./index.php?logged");
+        exit();
+      } else {
+        $_SESSION['usernameloginV'] = $user;
+        header("Location: ./verify.php?login");
+        exit();
+      }
+    }
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -20,28 +53,30 @@
 <body>
   <nav class="navbar shadow fixed-top navbar-expand-md navbar-dark transparent" id="topbar">
     <div class="justify-center" style="margin-left:3.5px;display: inline-flex;">
-      <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
-      <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
+      <a href="./index.php"><img src="./images/Logo.png" href="./index.php" class="mx-auto d-block" style="width:55px;height:55px"></a>
+      <a class="navbar-brand " href="./index.php" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
     </div>
 
   </nav>
-  <?php
-
-
-  ?>
   <div class="container box">
     <form class="justify-center" style="width: 100%;max-width: 300px;" method="POST" action="./login.php">
       <label class="text-center">Login</label>
       <label style="display: block;color: #ffaa00;font-size: 18px;">Username :</label>
-      <input type="text" required style="display: block;width: inherit;" />
+      <input name="user" type="text" required style="display: block;width: inherit;" />
       <label style="display: block;" for="spacing"> </label>
       <label style="display: block;color: #ffaa00;font-size: 18px;">Password :</label>
-      <input type="password" required style="display: block;width: inherit;" />
+      <input name="pass" type="password" required style="display: block;width: inherit;" />
       <label style="display: block;" for="spacing"> </label>
-      <label for="signup" style="color: #ffaa00;">Don't have an account ? <a href="./Signup.html">Sign up</a>.</label>
-      <label for="forgot-password" style="color: #ffaa00;"><a href="./forgot-mypassword.html">Forgot my Password !</a></label>
+      <label for="signup" style="color: #ffaa00;">Don't have an account ? <a href="./signup.php">Sign up</a>.</label>
+      <label for="forgot-password" style="color: #ffaa00;"><a href="./forgot_mypassword.php">Forgot my Password !</a></label>
       <div style="text-align: center;">
-        <button type="submit" class="btn">Login</button>
+        <button type="submit" class="btn" name="login">Login</button>
+        <?php
+        if (isset($_POST['login'])) {
+          if ($NOFR == 0 || !password_verify($pass, $hpass))
+            echo '<h5 class="text text-warning" style="text-align: center;margin-top:50px; font-size: 30px">Wrong UserName or Password </h5>';
+        }
+        ?>
       </div>
     </form>
   </div>
