@@ -1,4 +1,7 @@
+
 <?php
+include './db_conn.php';
+
 session_save_path("/tmp");
 session_start();
 $tao = $_SESSION['usernamelogin'];
@@ -7,7 +10,7 @@ if (!isset($tao)) {
   exit;
 }
 ?>
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -63,14 +66,14 @@ if (!isset($tao)) {
 
 
         <li class="nav-item active">
-          <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; "
-            href="./Login.html">username</a>
+        <?php
+        echo '<a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">' . $tao . ' </a>';?>
           <span class="sr-only">(current)</span>
         </li>
 
         <li class="nav-item active">
           <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; "
-            href="./Login.html">Logout</a>
+            href="./login.php">Logout</a>
           <span class="sr-only">(current)</span>
         </li>
 
@@ -91,16 +94,37 @@ if (!isset($tao)) {
           </button>
         </div>
         <div class="modal-body">
-          Playlist Name
           <form class="form-group">
-            <div class="form-control-lg"> </div>
-            <input class="form-control" placeholder="New PlayList">
+            <label> Playlist Name</label>
+            <input name = "name_playlist"class="form-control" placeholder="New PlayList">
+            <label>Type</label>
+            <select class="form-control">
+            <option name = "type_playlist" value=1>Public</option>
+            <option name = "type_playlist" value=0>Private</option>
+          </select>
           </form>
         </div>
         <div class="modal-footer">
           <button style="border-radius: 45%;" type="button" class="btn btn-secondary"
             data-dismiss="modal">CANCEL</button>
-          <button style="border-radius: 45%;" type="button" class="btn btn-primary">CREATE</button>
+          <button name="create"style="border-radius: 45%;" type="button" class="btn btn-primary">CREATE</button>
+        <?php
+
+$sql = "SELECT ID FROM UserTable WHERE UserName=?;";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$tao]);
+$stmt->fetchAll();
+//$stmtID='ffc4fcc4b46a812eb7f9096f4a454561';
+//$namePlaylist= $_POST['name_playlist'];
+//$typePlaylist= $_POST['type_playlist'];
+//$idu = 'ffc4fca4b46a812eb7f9096f4a454561';
+// md5($tao+$namePlaylist);
+//date_format($bday, "Y/m/d")
+$sql = "INSERT INTO Playlists VALUES (?,?,?,?,?,?,?);";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['1231231321564654','5465465454654','4545456465465' , date_format('1994/5/15', "Y/m/d"),(int)0,(int)0),date_format('1994/5/15', "Y/m/d")]);
+
+        ?>
         </div>
       </div>
     </div>

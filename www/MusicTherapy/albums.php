@@ -1,11 +1,34 @@
 <?php
 session_save_path("/tmp");
 session_start();
-$tao = $_SESSION['usernamelogin'];
-if (!isset($tao)) {
+if (empty($_SESSION['usernamelogin'])) {
   header("Location: index_guest.php");
-  exit;
+
 }
+else{
+  include './db_conn.php';
+  $username=$_SESSION['usernamelogin'];
+  $sql = "SELECT ID FROM UserTable Where UserName=?;";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$username]);
+  $result = $stmt->fetchAll();
+  foreach ($result as $id) {
+    $idut = $id['ID'];
+  }
+
+  $sql = "SELECT * FROM AlbumsTable WHERE ID IN(SELECT AlbumID FROM SongTable WHERE ID IN (SELECT SongID FROM PlaylistSongTable WHERE PlaylistID IN( SELECT ID FROM Playlists where userid=?)))";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$idut]);
+  $AlbumsInfo = $stmt->fetchAll();
+  $NORS = $stmt->rowCount();
+
+  if($NORS==0)
+    header("Location: ./initial_albums.php");
+else
+$check=0;
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -173,20 +196,32 @@ if (!isset($tao)) {
 
 
 
+
+
   <div class="music row ">
-
-
     <div class="row ">
+        <?php
 
-      <div class="col-lg-3 ">
+        foreach ($AlbumsInfo as $Album) {
+
+
+          if(($check % 4) == 0){
+
+           echo '<div class="row ">';
+           $check=0;
+          }
+
+        ?>
+
+      <div class="col-lg-auto ">
 
         <div class="a ih-item square colored effect6 mrgn-top ">
           <a href="# ">
-            <div class="img img-fluid "><img src="../images/m.jpeg" name="quran 1 " alt="img "></div>
+            <div class="img img-fluid "><img src="./images/m.jpeg"  name="<?php echo $Album['Name'];  ?> "  alt="img "></div>
             <div class="info ">
 
               <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
+                <h2 style="color:rgb(210,0,0); "> <?php echo $Album['Name'];  ?> </h2>
 
 
               </p>
@@ -196,338 +231,25 @@ if (!isset($tao)) {
 
 
       </div>
+        <?php
+      $check+=1;
+      if($check % 4==0){
+        echo '</div>';
+      }
 
+      }
 
-      <div class="col-lg-3 ">
-        <div class="b ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m1.jpeg " name="quran 2 " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
 
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m2.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m3.webp " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="row ">
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m1.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m2.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m3.webp " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="row ">
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m1.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m2.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m3.webp " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="row ">
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m1.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m2.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m3.webp " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="row ">
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m1.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m2.jpeg " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-3 ">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="# ">
-            <div class="img img-fluid "><img src="../images/m3.webp " alt="img "></div>
-            <div class="info ">
-              <p>
-                <h2 style="color:rgb(210,0,0); ">Album Name</h2>
-
-
-              </p>
-            </div>
-          </a>
+      if($check % 4!=0){?>
 
         </div>
-
-      </div>
-
-
-
-    </div>
+      <?php
+      }
+      ?>
 
 
   </div>
+
   <nav class=" navbar shadow navbar-expand-lg navbar-dark bg-dark fixed-bottom " style=" height: 80px; width:100%; margin-left:0px ">
 
     <div class="row " style="width:100%; ">
