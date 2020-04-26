@@ -97,7 +97,7 @@ if (isset($_POST['Verify'])) {
         <?php
         if (isset($_POST['Verify'])) {
           if ($codeV != $userCode) {
-            echo '<h5 class="text text-danger" style="text-align: center;margin-top:50px; font-size: 30px">Wrong Code.   ' . $userCode . '==' . $codeV . ' </h5>';
+            echo '<h5 class="text text-danger" style="text-align: center;margin-top:50px; font-size: 30px">Wrong Code. </h5>';
           }
         }
         ?>

@@ -1,16 +1,16 @@
 <?php
 session_save_path("/tmp");
 session_start();
-$tao = $_SESSION['usernamelogin'];
-if (!isset($tao)) {
-  header("Location: index_guest.php");
+
+if (empty($_SESSION['usernamelogin'])) {
+  header("Location: ./login.php");
   exit;
 } else {
   $result = $_SESSION['result'];
-  if (isset($_SESSION['result'])) {
+  if (empty($_SESSION['result'])) {
 
     print_r($result);
-  } else
+  } else{
     print_r($result);
 }
 ?>
@@ -46,10 +46,43 @@ if (!isset($tao)) {
   <link rel="shortcut icon" href="./images/Logo.png">
   <link rel="stylesheet" href="./icons/css/all.css">
   <link rel="stylesheet" href="./styles/search.css" />
-
+  <link rel="stylesheet" href="./styles/hover.css" />
 </head>
 
 <body>
+
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
+        <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+        <div style="margin-left:3.5px;display: inline-flex;">
+            <a href="./index.php"><img src="./images/Logo.png" href="./index.php" class="mx-auto d-block" style="width:55px;height:55px"></a>
+            <a class="navbar-brand " href="./index.php" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="img-fluid img" src="./images/p.svg" alt="Account Image"  style="width: 37px;height:30px">
+    </button>
+
+        <div class="collapse  navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto justify-right">
+
+
+                <li class="nav-item active">
+                    <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; " href="./information_overview.php"><?php echo $_SESSION['usernamelogin'];?></a>
+                    <span class="sr-only">(current)</span>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; " href="./logout.php">Logout</a>
+                    <span class="sr-only">(current)</span>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+
 
   <div class="modal fade" id="exampleModalLong1" tabindex="1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
@@ -87,33 +120,7 @@ if (!isset($tao)) {
           <p>user</p>
           <p>user</p>
           <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
-          <p>user</p>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary"
@@ -157,33 +164,7 @@ if (!isset($tao)) {
           <p>Global</p>
           <p>Global</p>
           <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
-          <p>Global</p>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary"
@@ -198,61 +179,74 @@ if (!isset($tao)) {
       </div>
     </div>
   </div>
-  <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
-    <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div style="margin-left:3.5px;display: inline-flex;">
-      <a href="./index.html"><img src="./images/Logo.png" href="./index.html" class="mx-auto d-block"
-          style="width:55px;height:55px"></a>
-      <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music
-        Therapy</a>
+
+
+   <!-- Modal -->
+<form action="search_result.php" method="POST">
+<div class="modal fade" id="exampleModalC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div style=" margin-top:200px;" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new playlist
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+
+              <form class="form-group" >
+                    <label> Playlist Name</label>
+                    <input name = "name_playlist"class="form-control" placeholder="New PlayList" required>
+                    <label>Type</label>
+                    <select name = "type_playlist" class="form-control">
+                        <option  value= 1 > Public</option>
+                        <option  value= 0 > Private</option>
+
+                    </select>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button style="border-radius: 45%;" type="button" class="btn btn-secondary"
+                        data-dismiss="modal">CANCEL</button>
+                <button name="create"style="border-radius: 45%;" type="submit" class="btn btn-primary">CREATE</button>
+  </form>
+               <?php
+
+
+      if(isset($_POST['create'])){
+
+
+$stmtID=md5(mt_rand());
+$namePlaylist= $_POST['name_playlist'];
+$typePlaylist=intval($_POST['type_playlist']);
+$sql = "INSERT INTO Playlists VALUES (?,?,?,?,?,?,?,?);";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([ $stmtID,$_SESSION['userIDlogin'], $namePlaylist, date("Y/m/d"),$typePlaylist,NULL,date("Y/m/d"),NULL]);
+                }
+        ?>
+            </div>
+        </div>
     </div>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <img class="img-fluid img" src="./images/p.svg" alt="Account Image" style="width: 37px;height:30px">
-    </button>
-
-    <div class="collapse  navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto justify-right">
-        <li class="nav-item active">
-          <label class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;"
-            href="./Login.html">username </label>
-          <span class="sr-only">(current)</span>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link font-nav-custom-color" style="text-align: right;margin-right: 7px; "
-            href="./Login.html">Logout</a>
-          <span class="sr-only">(current)</span>
-        </li>
-
-      </ul>
-    </div>
-  </nav>
-
-  <!-- The sidebar -->
-  <div class="sidebar shadow">
-    <a class="navbar-brand" href="./index.html" id="Logo">Music Therapy</a>
-    <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+</div>
+   <!-- The sidebar -->
+   <div class="sidebar bg-dark" id="sidebar" style="padding-top: 35px;">
+    <a href="./index.php"><i class="fas fa-home"></i> Home</a>
     <a href="./search.html"><i class="fas fa-search"></i> Search</a>
-    <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
     <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
+    <a class="division">-------------------------</a>
+    <a style="font-size: 20px;" href="#" class="cpl" data-toggle="modal" data-target="#exampleModalC"><i style="margin-left: -9px;" class=" fas fa-file-plus"></i>Create PlayList</a>
   </div>
 
   <nav class=" navbar shadow navbar-expand-md navbar-dark bg-dark fixed-bottom" style="height: 80px;"></nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="sidebar shadow ">
-        <a class="navbar-brand" href="./index.html" id="Logo">Music Therapy</a>
-        <a href="./index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="./search.html"><i class="fas fa-search"></i> Search</a>
-        <a href="./Albums.html"><i class="fas fa-album-collection"></i> Albums</a>
-        <a href="./Your-Library.html"><i class="fas fa-list-music"></i> Your Library</a>
-      </div>
 
     </div>
-    <div class="jumbotron   ">
+
       <div class="container">
         <div class="text-center">
           <h1>Search Result </h1>
@@ -278,7 +272,7 @@ if (!isset($tao)) {
         <div class="row row-centered">
           <h2>The song</h2>
         </div>
-        <div id=" demo " class="carousel slide " data-interval="false " data-ride="carousel ">
+        <div id=" demo " class="carousel slide " data-interval="false" data-ride="carousel">
           <!-- The slideshow -->
           <div class="container carousel-inner no-padding ">
 
@@ -299,11 +293,14 @@ if (!isset($tao)) {
                     <div class="info ">
                       <h4 style="color:rgb(210,0,0); ">Song Name</h4>
                       <p>
-                        <h5>Artist : Amr Diab</h5>
+                      <h5>Artist : Amr Diab</h5>
                         <h5>Genre : Romantic</h5>
                         <h5>Album : Love</h5>
-
                       </p>
+
+                    </div>
+
+
 
                     </div>
 
@@ -312,14 +309,17 @@ if (!isset($tao)) {
                 </div>
 
 
-                <div id="add_button" class="btn-group flex_nav" type="button">
+
+
+             </div>
+             <div  id="add_button" class="btn-group flex_nav" type="button">
                   <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false ">
 
                     <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
                   </button>
-                  <div class="dropdown-menu">
+                  <div class="dropdown dropdown-menu">
                     <!-- Button trigger modal -->
-                    <button type="button" class="dropdown-item btn btn-primary" data-toggle="modal"
+                    <button  type="button" class="dropdown-item btn btn-primary" data-toggle="modal"
                       data-target="#exampleModalLong1">user</button>
                     <!-- Modal -->
                     <!-- Button trigger modal -->
@@ -327,81 +327,14 @@ if (!isset($tao)) {
                       data-target="#exampleModalLong">global</button>
                     <!-- Modal -->
                   </div>
-                </div>
 
-              </div>
-
-
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-                <button id="add_button" type="button" class="btn">
-
-                  <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
-
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-                <button id="add_button" type="button" class="btn">
-
-                  <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
-                </button>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-                <button id="add_button" type="button" class="btn  ">
-
-                  <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
-                </button>
               </div>
 
 
             </div>
-            <div class="carousel-item ">
+
+
+            <!-- <div class="carousel-item ">
               <div class="col-xs-3 col-sm-3 col-md-3 ">
                 <div class="ih-item square colored effect6 mrgn-top ">
                   <a href="# ">
@@ -442,217 +375,21 @@ if (!isset($tao)) {
                   <img id="add_button_img" src="icons/icons8-add-48.png" /></button>
                 </button>
               </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
 
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-            <div class="carousel-item ">
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h6 style="color:rgb(210,0,0); ">Song Name</h2>
-                        <p>
-                          <h3>
-                            Artist : Amr Diab
-                          </h3>
-                          <h3>
-                            Genre : Romantic
-                          </h3>
-                          <h3>
-                            Album : Love
-                          </h3>
-
-                        </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 ">
-                <div class="ih-item square colored effect6 mrgn-top ">
-                  <a href="# ">
-                    <div class="img img-fluid "><img
-                        src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg "
-                        name="quran 1 " alt="img "></div>
-                    <div class="info ">
-                      <h4 style="color:rgb(210,0,0); ">Song Name</h4>
-                      <p>
-                        <h5>Artist : Amr Diab</h5>
-                        <h5>Genre : Romantic</h5>
-                        <h5>Album : Love</h5>
-
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
+            </div> -->
 
 
-            </div>
+
+
+
+
+
+
           </div>
+
+
+
+
           <div class="container ">
             <a class="carousel-control-prev " href="#demo" role="button " data-slide="prev "> <span
                 class="carousel-control-prev-icon " aria-hidden="true "></span> </a>
@@ -660,10 +397,17 @@ if (!isset($tao)) {
                 class="carousel-control-next-icon " aria-hidden="true "></span> </a>
           </div>
 
+
         </div>
+
+
       </div>
 
-    </div>
+
+
+
+
+
     <nav class=" navbar shadow navbar-expand-lg navbar-dark bg-dark fixed-bottom"
       style=" height: 80px; width:100%; margin-left:0px">
       <div class="row" style="width:100%">

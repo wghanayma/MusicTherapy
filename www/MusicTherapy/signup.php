@@ -58,11 +58,9 @@ if (isset($_POST['signup'])) {
     //   // echo "Message sent!";
     // }
     $mail->send();
-
     $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO UserTable VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
     $stmt = $pdo->prepare($sql);
-    $mail->send();
     $idu = md5($userName);
     $stmt->execute([$idu, $userName, $firstname, $midname, $lastname, $hashedpassword, date_format($bday, "Y/m/d"), $email, "user", $gender, $code, "-1"]);
     $_SESSION['username'] = $userName;

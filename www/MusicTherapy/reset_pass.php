@@ -1,7 +1,11 @@
 <?php
+include './db_conn.php';
 session_save_path("/tmp");
 session_start();
 
+if (empty($_SESSION['RPEmail']))
+  header("Location: ./login.php");
+else {
 
 if (isset($_POST['SetPass'])) {
 
@@ -9,12 +13,15 @@ if (isset($_POST['SetPass'])) {
   $Rnew = $_POST['RepeatNewPass'];
 
   if ($new == $Rnew) {
-    $sql = "UPDATE UserTable SET Password='" . $code . "'Where Email=?;";
+    $email=$_SESSION['RPEmail'];
+    $NewHashedPass=password_hash($new, PASSWORD_DEFAULT);
+    $sql = "UPDATE UserTable SET Password='" . $NewHashedPass. "'Where Email=?;";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$email]);
+    header("Location: ./login.php?resetpassdone");
   }
 }
-
+}
 
 
 
@@ -68,7 +75,8 @@ if (isset($_POST['SetPass'])) {
 
         <div class="row ">
 
-          <div class="col-md-6 offset-md-2 ">.
+        <div class="col-md-6 offset-md-2 ">.
+          <form action="reset_pass.php" method="POST">
             <div class="form-group ">
               <h2 style="display:block; color: #ffaa00; margin-bottom:50px;">Change Your Password </h2>
             </div>
@@ -82,10 +90,16 @@ if (isset($_POST['SetPass'])) {
             </div>
             <div class="form-group">
               <div class="text-center ">
-                <button nane="SetPass" type="submit" class="btn btn-primary">Set New Password</button>
+                <button name="SetPass" type="submit" class="btn btn-primary">Set New Password</button>
               </div>
             </div>
-          </div>
+            <?php if ($new != $Rnew) {
+            echo "<label class='text text-danger' style=' margin-left:80px;font-size: 30px ' name=\"message\">The passwords don't match</label>";
+
+          }
+        ?>
+        </form>
+        </div>
         </div>
 
 

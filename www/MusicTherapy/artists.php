@@ -1,11 +1,35 @@
 <?php
+
 session_save_path("/tmp");
 session_start();
-$tao = $_SESSION['usernamelogin'];
-if (!isset($tao)) {
-  header("Location: index_guest.php");
-  exit;
+if (empty($_SESSION['usernamelogin'])) {
+    header("Location: ./login.php");
+
 }
+else{
+    include './db_conn.php';
+    $username=$_SESSION['usernamelogin'];
+    $sql = "SELECT ID FROM UserTable Where UserName=?;";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$username]);
+    $result = $stmt->fetchAll();
+    foreach ($result as $id) {
+        $idut = $id['ID'];
+    }
+
+    $sql = "SELECT Name FROM ArtistTable WHERE ID IN(SELECT ArtistID FROM SongArtistTable WHERE SongID IN (SELECT SongID FROM PlaylistSongTable WHERE PlaylistID IN( SELECT ID FROM Playlists where userid=?)))";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idut]);
+    $ArtistsInfo = $stmt->fetchAll();
+    $NORS = $stmt->rowCount();
+
+    if($NORS==0)
+        header("Location: ./initial_artist.php");
+    else
+        $check=0;
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +55,8 @@ if (!isset($tao)) {
     <title>Music Therapy - Home of Music</title>
     <!-- <script src="./script/id3-minimized.js"></script> -->
     <!-- <link rel="import" href="http://192.168.1.100:9000/"> -->
-    <link rel="stylesheet" href="../icons/css/all.css">
-    <link rel="shortcut icon" href="../images/Logo.png">
+    <link rel="stylesheet" href="./icons/css/all.css">
+    <link rel="shortcut icon" href="./images/Logo.png">
     <link rel="stylesheet" href="./styles/Lists.css">
     <link rel="stylesheet" href="./styles/ArtistsHover.css" />
 
@@ -42,65 +66,86 @@ if (!isset($tao)) {
 </head>
 
 <body>
-  <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
-    <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
-      <span class="navbar-toggler-icon"></span>
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
+        <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div style="margin-left:3.5px;display: inline-flex;">
-      <a href="../index.html"><img src="../images/Logo.png" href="../index.html" class="mx-auto d-block" style="width:55px;height:55px"></a>
-      <a class="navbar-brand " href="../index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music
-        Therapy</a>
-    </div>
+        <div style="margin-left:3.5px;display: inline-flex;">
+            <a href="./index.php"><img src="./images/Logo.png" href="./index.php" class="mx-auto d-block" style="width:55px;height:55px"></a>
+            <a class="navbar-brand " href="./index.php" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
+        </div>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <img class="img-fluid img" src="../images/p.svg" alt="Account Image" style="width: 37px;height:30px">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="img-fluid img" src="./images/p.svg" alt="Account Image"  style="width: 37px;height:30px">
     </button>
 
-    <div class="collapse  navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto justify-right">
+        <div class="collapse  navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto justify-right">
 
 
-        <li class="nav-item active">
-          <?php
-          echo '<a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;" href="./Login.html">' . $tao . ' </a>'; ?>
-          <span class="sr-only">(current)</span>
-        </li>
+                <li class="nav-item active">
+                    <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; " href="./information_overview.php"><?php echo $_SESSION['usernamelogin'];?></a>
+                    <span class="sr-only">(current)</span>
+                </li>
 
-        <li class="nav-item active">
-          <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; " href="../Login.html">Logout</a>
-          <span class="sr-only">(current)</span>
-        </li>
+                <li class="nav-item active">
+                    <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; " href="./logout.php">Logout</a>
+                    <span class="sr-only">(current)</span>
+                </li>
 
-      </ul>
-    </div>
-  </nav>
-
+            </ul>
+        </div>
+    </nav>
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form action="artists.php" method="POST">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div style=" margin-top:200px;" class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create new playlist
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Playlist Name
-          <form class="form-group">
-            <div class="form-control-lg"> </div>
-            <input class="form-control" placeholder="New PlayList">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button style="border-radius: 45%;" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
-          <button style="border-radius: 45%;" type="button" class="btn btn-primary">CREATE</button>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div style=" margin-top:200px;" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new playlist
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <div class="modal-body">
+
+              <form class="form-group" >
+                    <label> Playlist Name</label>
+                    <input name = "name_playlist"class="form-control" placeholder="New PlayList" required>
+                    <label>Type</label>
+                    <select name = "type_playlist" class="form-control">
+                        <option  value= 1 > Public</option>
+                        <option  value= 0 > Private</option>
+
+                    </select>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button style="border-radius: 45%;" type="button" class="btn btn-secondary"
+                        data-dismiss="modal">CANCEL</button>
+                <button name="create"style="border-radius: 45%;" type="submit" class="btn btn-primary">CREATE</button>
+  </form>
+               <?php
+
+
+      if(isset($_POST['create'])){
+
+
+$stmtID=md5(mt_rand());
+$namePlaylist= $_POST['name_playlist'];
+$typePlaylist=intval($_POST['type_playlist']);
+$sql = "INSERT INTO Playlists VALUES (?,?,?,?,?,?,?,?);";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([ $stmtID,$_SESSION['userIDlogin'], $namePlaylist, date("Y/m/d"),$typePlaylist,NULL,date("Y/m/d"),NULL]);
+                }
+        ?>
+            </div>
+        </div>
+    </div>
+</div>
   <!-- The sidebar -->
   <div class="sidebar bg-dark" id="sidebar" style="padding-top: 35px;">
     <a style="font-size: 20px;" href="../index.html"><i class="fas fa-home"></i> Home</a>
@@ -181,16 +226,27 @@ if (!isset($tao)) {
 
 
     <div class="row">
+    <?php
 
+foreach ($ArtistsInfo as $Artist) {
+
+
+    if(($check % 4) == 0){
+
+        echo '<div class="row ">';
+        $check=0;
+    }
+
+    ?>
       <div class="col-lg-auto">
 
         <div class="a ih-item square effect6 scale_up mrgn-top ">
           <a href="#">
-            <div class="img img-fluid"><img src="../images/m.jpeg" name="quran 1" alt="img"></div>
+            <div class="img img-fluid"><img src="./images/m.jpeg" name="<?php echo $Artist['Name'];  ?> " alt="img"></div>
             <div class="info">
 
               <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
+                <h3 style="color:rgb(210,0,0);"><?php echo $Artist['Name'];  ?></h3>
 
 
               </p>
@@ -200,336 +256,20 @@ if (!isset($tao)) {
 
 
       </div>
+      <?php
+            $check+=1;
+            if($check % 4==0){
+                echo '</div>';
+            }
+
+        }
 
 
-      <div class="col-lg-auto">
-        <div class="b ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m1.jpeg" name="quran 2" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m2.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m3.webp" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
+        if($check % 4!=0){?>
 
     </div>
-    <div class="row">
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m1.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m2.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top ">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m3.webp" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="row">
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m1.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m2.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m3.webp" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="row">
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m1.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m2.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m3.webp" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m1.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m2.jpeg" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="col-lg-auto">
-        <div class="ih-item square colored effect6 mrgn-top">
-          <a href="#">
-            <div class="img img-fluid"><img src="../images/m3.webp" alt="img"></div>
-            <div class="info">
-              <p>
-                <h2 style="color:rgb(210,0,0);">Artist Name</h2>
-
-
-              </p>
-            </div>
-          </a>
-
-        </div>
-
-      </div>
-
-
-
-    </div>
-
+    <?php
+    }?>
 
   </div>
   <nav class=" navbar shadow navbar-expand-lg navbar-dark bg-dark fixed-bottom" style=" height: 80px; width:100%; margin-left:0px">
@@ -559,7 +299,7 @@ if (!isset($tao)) {
 
 
 
-  <script src="../script/Lists.js">
+  <script src="./script/Lists.js">
   </script>
 
 </body>

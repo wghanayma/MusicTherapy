@@ -1,5 +1,6 @@
 <?php
+session_save_path("/tmp");
 session_start();
-unset($_SESSION['usernamelogin']);
+session_unset();
 session_destroy();
-header("Location: index_guest.php");
+header("Location: ./login.php");

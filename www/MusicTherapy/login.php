@@ -19,6 +19,15 @@ if (isset($_POST['login'])) {
     if (password_verify($pass, $hpass)) {
       if ($UserV == -1) {
         $_SESSION['usernamelogin'] = $user;
+
+        $sql = "SELECT ID FROM UserTable Where UserName=?;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$user]);
+        $result = $stmt->fetchAll();
+        foreach ($result as $id) {
+            $idu = $id['ID'];
+        }
+        $_SESSION['userIDlogin'] = $idu;
         header("Location: ./index.php?logged");
         exit();
       } else {

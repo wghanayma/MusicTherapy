@@ -1,9 +1,8 @@
 <?php
 session_save_path("/tmp");
 session_start();
-$tao = $_SESSION['usernamelogin'];
-if (!isset($tao)) {
-  header("Location: index_guest.php");
+if (empty($_SESSION['usernamelogin'])) {
+  header("Location: ./login.php");
   exit;
 }
 ?>
@@ -36,44 +35,43 @@ if (!isset($tao)) {
   <title>Music Therapy - Create Supporter Account</title>
   <!-- <script src="./script/id3-minimized.js"></script> -->
   <!-- <link rel="import" href="http://192.168.1.100:9000/"> -->
-  <link rel="shortcut icon" href=".././images/Logo.png">
-  <link rel="stylesheet" href=".././icons/css/all.css">
+  <link rel="shortcut icon" href="./images/Logo.png">
+  <link rel="stylesheet" href="./icons/css/all.css">
   <link rel="stylesheet" href="./styles/create_support_account_information.css" />
-  <script src=".././script/index.js"></script>
+  <script src="./script/index.js"></script>
 </head>
 
 <body>
-  <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
-    <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
-      <span class="navbar-toggler-icon"></span>
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="topbar">
+        <button class="navbar-toggler" type="button" onclick="showOrHideSidebar();">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div style="margin-left:3.5px;display: inline-flex;">
-      <a href="./index.html"><img src=".././images/Logo.png" href="./index.html" class="mx-auto d-block"
-          style="width:55px;height:55px"></a>
-      <a class="navbar-brand " href="./index.html" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
-    </div>
+        <div style="margin-left:3.5px;display: inline-flex;">
+            <a href="./index.php"><img src="./images/Logo.png" href="./index.php" class="mx-auto d-block" style="width:55px;height:55px"></a>
+            <a class="navbar-brand " href="./index.php" id="Logo" style="margin-left:8px;margin-top: 6px;"> Music Therapy</a>
+        </div>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <img class="img-fluid img" src=".././images/p.svg" alt="Account Image" style="width: 37px;height:30px">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="img-fluid img" src="./images/p.svg" alt="Account Image"  style="width: 37px;height:30px">
     </button>
 
-    <div class="collapse navbar-collapse right-items" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto justify-right">
-        <li class="nav-item active">
-          <a class="nav-link font-nav-custom-color" style="text-align: right; margin-right: 7px;"
-            href="./Login.html">Username </a>
-          <span class="sr-only">(current)</span>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link font-nav-custom-color" style="text-align: right;margin-right: 7px; "
-            href="./Login.html">Logout</a>
-          <span class="sr-only">(current)</span>
-        </li>
+        <div class="collapse  navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto justify-right">
 
-      </ul>
-    </div>
-  </nav>
+
+                <li class="nav-item active">
+                    <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; " href="./information_overview.php"><?php echo $_SESSION['usernamelogin'];?></a>
+                    <span class="sr-only">(current)</span>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link font-nav-custom-color hora" style="text-align: center;margin-right: 7px; " href="./logout.php">Logout</a>
+                    <span class="sr-only">(current)</span>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
   <!-- The sidebar -->
   <div class="sidebar bg-dark" id="sidebar" style="padding-top: 35px;">
     <a href="./index.html"><i class="fas fa-home"></i> Home</a>

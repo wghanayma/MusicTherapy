@@ -15,10 +15,10 @@ else {
     $stmt->execute([$userE]);
     $result = $stmt->fetchAll();
     foreach ($result as $fcode) {
-      $FPcode = $fcode['Fcode'];
+      $FPcode = $fcode['FCode'];
     }
     if ($FPcode == $userCode) {
-      $sql = "UPDATE UserTable SET FCode=" . generateRandomInt() . "Where Email=?;";
+      $sql = "UPDATE UserTable SET FCode='" . generateRandomInt() . "'Where Email=?;";
       $stmt = $pdo->prepare($sql);
       $stmt->execute([$userE]);
       header("Location: ./reset_pass.php?verified");
